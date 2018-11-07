@@ -8,6 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { RunningProjectsComponent } from './running-projects/running-projects.component';
+import { BiriCommandsComponent } from './biribiri/biri-commands/biri-commands.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { RunningProjectsComponent } from './running-projects/running-projects.co
     BiribiriComponent,
     HeaderComponent,
     FooterComponent,
-    RunningProjectsComponent
+    RunningProjectsComponent,
+    BiriCommandsComponent
   ],
   imports: [
     BrowserModule,
