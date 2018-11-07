@@ -1,1 +1,31 @@
-<app-biri-commands></app-biri-commands>
+<div class="row">
+  <div class="card text-white bg-primary mb-3" style="max-width: 20rem; margin: 10px;">
+    <div class="card-header">Biribiri Help page</div>
+    <div class="card-body">
+      <p class="card-text">
+        This page contains the full help for biri, a more detailled version of the messages received when asking for
+        help using discord.
+        This help can also be found on <a href="https://github.com/DeJonge00/PythonBot/blob/master/README.md">Github</a>.
+        <br><br>
+        <button type="button" routerLink="/biribiri/help" class="btn btn-primary" style="width: 120px;">
+          Help page
+        </button>
+        <a href="https://github.com/DeJonge00/PythonBot/blob/master/README.md">
+          <button type="button" class="btn btn-primary" style="margin: 10px; width: 120px">Github page</button>
+        </a>
+      </p>
+    </div>
+  </div>
+
+  <div class="card text-white bg-primary mb-3" style="max-width: 20rem; margin: 10px;">
+    <div class="card-header">Statistics</div>
+    <div class="card-body">
+      <p class="card-text">
+        This page contains some statistics about command usage of this bot.
+      </p>
+      <button type="button" routerLink="/biribiri/commands" class="btn btn-primary" style="position: absolute; bottom: 30px; width: calc(100% - 40px);">
+        Bot commands statistics
+      </button>
+    </div>
+  </div>
+</div>
