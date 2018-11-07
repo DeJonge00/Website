@@ -12,6 +12,8 @@ import {BiriCommandsComponent} from './biribiri/biri-commands/biri-commands.comp
 import {MarkdownModule} from 'ngx-markdown';
 import {HttpClientModule, HttpClient} from "@angular/common/http";
 import { BiriHelpComponent } from './biribiri/biri-help/biri-help.component';
+import { BiriRpgComponent } from './biribiri/biri-rpg/biri-rpg.component';
+import { BiriPlayComponent } from './biribiri/biri-play/biri-play.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { BiriHelpComponent } from './biribiri/biri-help/biri-help.component';
     FooterComponent,
     RunningProjectsComponent,
     BiriCommandsComponent,
-    BiriHelpComponent
+    BiriHelpComponent,
+    BiriRpgComponent,
+    BiriPlayComponent
   ],
   imports: [
     HttpClientModule,

@@ -9,6 +9,7 @@ export class GeneralApiService {
   }
 
   getCommandData() {
+    // TODO Request api data
     return [
       {"command": "echo", "timestamp": 1541600802.59, "location": "'Underworld':'development':'Nya'"},
       {"command": "rpg info", "timestamp": 1541601226.46, "location": "Underworld/development/Nya"},
@@ -31,5 +32,14 @@ export class GeneralApiService {
       {"command": "rpg levelup", "timestamp": 1541604408.191, "location": "Underworld/development/Nya"},
       {"command": "rpg info", "timestamp": 1541604416.544, "location": "Underworld/development/Nya"}
     ];
+  }
+
+  getActiveUsers() {
+    // TODO Request api data
+    return [
+      {'name': 'id_1', 'exp': 1000},
+      {'name': 'id_2', 'exp': 900},
+      {'name': 'id_3', 'exp': 800}
+    ]
   }
 }

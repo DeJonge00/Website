@@ -1,0 +1,13 @@
+.fullwidth {
+  height: 100%;
+  width: calc(100% - 10px);
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.halfwidth {
+  height: 100%;
+  width: calc(50% - 10px);
+  margin-left: 5px;
+  margin-right: 5px;
+}
