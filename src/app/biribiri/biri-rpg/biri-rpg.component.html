@@ -9,7 +9,7 @@
       <th scope="col">Role</th>
     </tr>
     </thead>
-    <tr *ngFor="let player of players">
+    <tr *ngFor="let player of players" routerLink="/biribiri/rpg/players/{{player.userid}}">
       <td>{{player.stats.name}}</td>
       <td>{{player.exp}}</td>
       <td>{{player.role}}</td>

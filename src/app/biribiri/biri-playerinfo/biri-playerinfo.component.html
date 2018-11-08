@@ -1,0 +1,41 @@
+<div *ngIf="!player" class="alert alert-dismissible alert-secondary">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  Loading the data for the player with id '{{player_id}}'.
+</div>
+
+<div *ngIf="player">
+  <h2>These are the stats for {{player.stats.name}}</h2>
+  <br>
+  <table class="table table-hover" style="max-width: 1000px">
+    <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Value</th>
+    </tr>
+    </thead>
+    <tr>
+      <td>Name</td>
+      <td>{{player.stats.name}}</td>
+    </tr>
+    <tr>
+      <td>Role</td>
+      <td>{{player.role}}</td>
+    </tr>
+    <tr>
+      <td>Bosstier</td>
+      <td>{{player.bosstier}}</td>
+    </tr>
+    <tr>
+      <td>Status</td>
+      <td>{{player.busy.description}} for {{player.busy.time}} minutes</td>
+    </tr>
+    <tr>
+      <td>Money</td>
+      <td>{{player.money}}</td>
+    </tr>
+    <tr>
+      <td>Base health</td>
+      <td>{{player.stats.health}}/{{player.stats.maxhealth}}</td>
+    </tr>
+  </table>
+</div>
