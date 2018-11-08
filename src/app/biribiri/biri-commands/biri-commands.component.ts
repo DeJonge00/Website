@@ -8,7 +8,7 @@ import {GeneralApiService} from "../../general-api.service";
 })
 export class BiriCommandsComponent implements OnInit {
 
-  commands_data = [];
+  commands_data;
 
   constructor(private generalApiService: GeneralApiService) { }
 
@@ -17,7 +17,9 @@ export class BiriCommandsComponent implements OnInit {
   }
 
   get_commands_data() {
-    this.commands_data = this.generalApiService.getCommandData();
+    this.generalApiService.getCommandData().subscribe(data => {
+      this.commands_data = data;
+    });
   }
 
 }

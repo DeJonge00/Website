@@ -8,7 +8,7 @@ import {GeneralApiService} from "../../general-api.service";
 })
 export class BiriRpgComponent implements OnInit {
 
-  players: {'name': string, 'exp': number}[];
+  players;
 
   constructor(private api: GeneralApiService) { }
 
@@ -17,7 +17,10 @@ export class BiriRpgComponent implements OnInit {
   }
 
   setPlayers() {
-    this.players = this.api.getActiveUsers();
+    this.api.getActiveUsers().subscribe(data => {
+      this.players = data;
+      console.log(data)
+    });
   }
 
 }

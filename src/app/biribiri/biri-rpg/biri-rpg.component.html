@@ -6,11 +6,13 @@
     <tr>
       <th scope="col">Name</th>
       <th scope="col">Exp</th>
+      <th scope="col">Role</th>
     </tr>
     </thead>
     <tr *ngFor="let player of players">
-      <td>{{player.name}}</td>
+      <td>{{player.stats.name}}</td>
       <td>{{player.exp}}</td>
+      <td>{{player.role}}</td>
     </tr>
   </table>
 </div>
