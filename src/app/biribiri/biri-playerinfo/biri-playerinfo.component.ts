@@ -16,7 +16,7 @@ export class BiriPlayerinfoComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.player_id = '' + +this.route.snapshot.paramMap.get('id');
+    this.player_id = this.route.snapshot.paramMap.get('name');
     this.getPlayerData();
   }
 

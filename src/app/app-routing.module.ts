@@ -14,7 +14,7 @@ const routes = [
   {path: 'biribiri', component: BiribiriComponent},
   {path: 'biribiri/help', component: BiriHelpComponent},
   {path: 'biribiri/rpg', component: BiriRpgComponent},
-  {path: 'biribiri/rpg/players/:id', component: BiriPlayerinfoComponent},
+  {path: 'biribiri/rpg/players/:name', component: BiriPlayerinfoComponent},
   {path: 'biribiri/rpg/play', component: BiriPlayComponent},
   {path: 'biribiri/commands', component: BiriCommandsComponent},
   {path: 'running-projects', component: RunningProjectsComponent},

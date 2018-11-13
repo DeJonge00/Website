@@ -19,7 +19,7 @@ export class BiriRpgComponent implements OnInit {
   setPlayers() {
     this.api.getActiveUsers().subscribe(data => {
       this.players = data;
-      console.log(data)
+      console.log(data);
     });
   }
 

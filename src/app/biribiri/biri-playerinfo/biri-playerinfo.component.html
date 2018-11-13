@@ -6,7 +6,7 @@
 <div *ngIf="player">
   <h2>These are the stats for {{player.stats.name}}</h2>
   <br>
-  <table class="table table-hover" style="max-width: 1000px">
+  <table class="table table-hover" style="max-width: 800px">
     <thead>
     <tr>
       <th scope="col">Name</th>
@@ -20,6 +20,10 @@
     <tr>
       <td>Role</td>
       <td>{{player.role}}</td>
+    </tr>
+    <tr>
+      <td>Exp (level)</td>
+      <td>{{player.exp}} ({{player.level}})</td>
     </tr>
     <tr>
       <td>Bosstier</td>
@@ -38,4 +42,5 @@
       <td>{{player.stats.health}}/{{player.stats.maxhealth}}</td>
     </tr>
   </table>
+  <img src="{{player.stats.picture_url}}" style="max-height: 200px">
 </div>
