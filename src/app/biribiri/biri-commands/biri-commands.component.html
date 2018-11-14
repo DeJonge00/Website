@@ -15,4 +15,6 @@
     </ul>
   </div>
   <canvas id="chart" style="max-width: 1000px">{{chart}}</canvas>
+  <button *ngIf="current_period != 'day'" type="button" class="btn btn-primary" (click)="setPeriodDaily()">View daily data</button>
+  <button *ngIf="current_period != 'hour'" type="button" class="btn btn-primary" (click)="setPeriodHourly()">View hourly data</button>
 </div>
