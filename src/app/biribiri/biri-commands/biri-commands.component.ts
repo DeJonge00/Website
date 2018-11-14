@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import {GeneralApiService} from "../../general-api.service";
+import {Component, OnInit} from '@angular/core';
+import {GeneralApiService} from '../../general-api.service';
+import {Chart} from '../../../../node_modules/chart.js';
 
 @Component({
   selector: 'app-biri-commands',
@@ -9,8 +10,10 @@ import {GeneralApiService} from "../../general-api.service";
 export class BiriCommandsComponent implements OnInit {
 
   commands_data;
+  chart: Chart;
 
-  constructor(private generalApiService: GeneralApiService) { }
+  constructor(private generalApiService: GeneralApiService) {
+  }
 
   ngOnInit() {
     this.get_commands_data();
@@ -19,7 +22,94 @@ export class BiriCommandsComponent implements OnInit {
   get_commands_data() {
     this.generalApiService.getCommandData().subscribe(data => {
       this.commands_data = data;
+      this.setChart(data);
     });
   }
 
+  setChart(data) {
+    // Set constants
+    const period_length = 24 * 60 * 60;
+    const period_amount = 14;
+    let start_time = (new Date().getTime() / 1000);
+    start_time = start_time - (start_time % period_length) - (period_amount * period_length);
+
+    // Create labels
+    const labels = [];
+    let i;
+    for (i = 0; i < period_amount; i++) {
+      labels.push(start_time + period_length * i);
+    }
+
+    // Init data with total command count
+    const total_commands = [];
+    let num;
+    for (const start of labels) {
+      num = 0;
+      for (const x of this.commands_data) {
+        if ((start <= x.timestamp) && (x.timestamp < (start + period_length))) {
+          num += 1;
+        }
+      }
+      total_commands.push(num);
+    }
+
+    const datasets = [
+      {
+        label: 'Total commands',
+        data: total_commands,
+        borderColor: '#196f18',
+        fill: false
+      },
+    ];
+
+    // Add other command counters
+    const command_names = new Set();
+    for (const n of this.commands_data) {
+      command_names.add(n.command.split(' ')[0]);
+    }
+
+    for (const command of Array.from(command_names)) {
+      const d = [];
+      for (const start of labels) {
+        num = 0;
+        for (const x of this.commands_data) {
+          if ((start <= x.timestamp) && (x.timestamp < (start + period_length)) && (x.command.split(' ')[0] === command)) {
+            num += 1;
+          }
+        }
+        d.push(num);
+      }
+
+      datasets.push({
+        label: command,
+        data: d,
+        borderColor: '#' + ((1 << 24) * Math.random() | 0).toString(16),
+        fill: false
+      });
+    }
+
+    // Convert timestamps to strings
+    for (i = 0; i < period_amount; i++) {
+      labels[i] = new Date(labels[i] * 1000).toDateString();
+    }
+
+    // Construct actual chart
+    this.chart = new Chart(document.getElementById('chart'), {
+      type: 'line',
+      data: {
+        labels: labels,
+        datasets: datasets
+      },
+      options: {
+        scales: {
+          xAxes: [{
+            display: true
+          }],
+          yAxes: [{
+            display: true
+          }]
+        }
+      }
+    });
+  }
 }

@@ -1,8 +1,18 @@
 <div>
   <h2>Commands data</h2>
-  <ul>
-    <li *ngFor="let data of commands_data">
-      {{data.command}}, {{data.timestamp}}, {{data.location}}
-    </li>
-  </ul>
+
+  <div *ngIf="!commands_data" class="alert alert-dismissible alert-secondary">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    Command data retrieval in progress.
+  </div>
+
+  <div *ngIf="commands_data">
+    Here you can see how much Biri could be of use the past 2 weeks. A total of {{commands_data.length}} commands were used in that period.
+    <ul *ngIf="0">
+      <li *ngFor="let data of commands_data">
+        {{data.command}}, {{data.timestamp}}, {{data.location}}
+      </li>
+    </ul>
+  </div>
+  <canvas id="chart" style="max-width: 1000px">{{chart}}</canvas>
 </div>
