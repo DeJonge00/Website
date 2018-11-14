@@ -15,6 +15,7 @@ import { BiriHelpComponent } from './biribiri/biri-help/biri-help.component';
 import { BiriRpgComponent } from './biribiri/biri-rpg/biri-rpg.component';
 import { BiriPlayComponent } from './biribiri/biri-play/biri-play.component';
 import { BiriPlayerinfoComponent } from './biribiri/biri-playerinfo/biri-playerinfo.component';
+import { BiriServerlistComponent } from './biribiri/biri-serverlist/biri-serverlist.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { BiriPlayerinfoComponent } from './biribiri/biri-playerinfo/biri-playeri
     BiriHelpComponent,
     BiriRpgComponent,
     BiriPlayComponent,
-    BiriPlayerinfoComponent
+    BiriPlayerinfoComponent,
+    BiriServerlistComponent
   ],
   imports: [
     HttpClientModule,

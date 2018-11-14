@@ -33,4 +33,8 @@ export class GeneralApiService {
   getPlayerData(id: string) {
     return this.http.get(environment.api_url + 'rpg/players/' + id, this.getHttpOptions());
   }
+
+  getServerList() {
+    return this.http.get(environment.api_url + 'servers', this.getHttpOptions());
+  }
 }

@@ -27,4 +27,27 @@ export class BiriPlayerinfoComponent implements OnInit {
     });
   }
 
+  descStr(d, a) {
+    return d + ' for ' + a + ' minutes';
+  }
+
+  descToString(desc: number, minutes: number) {
+    switch (desc) {
+      case 0:
+        return 'Lazing around';
+      case 1:
+        return this.descStr('Adventuring', minutes);
+      case 2:
+        return this.descStr('Training', minutes);
+      case 3:
+        return this.descStr('Preparing a bossraid', minutes);
+      case 4:
+        return this.descStr('Wandering', minutes);
+      case 5:
+        return this.descStr('Working', minutes);
+      default:
+        return this.descStr(desc, minutes);
+    }
+  }
+
 }

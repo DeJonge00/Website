@@ -1,5 +1,4 @@
 <div *ngIf="!player" class="alert alert-dismissible alert-secondary">
-  <button type="button" class="close" data-dismiss="alert">&times;</button>
   Loading the data for the player with id '{{player_id}}'.
 </div>
 
@@ -31,7 +30,7 @@
     </tr>
     <tr>
       <td>Status</td>
-      <td>{{player.busy.description}} for {{player.busy.time}} minutes</td>
+      <td>{{descToString(player.busy.description, player.busy.time)}}</td>
     </tr>
     <tr>
       <td>Money</td>

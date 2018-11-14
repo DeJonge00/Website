@@ -8,6 +8,7 @@ import {BiriCommandsComponent} from './biribiri/biri-commands/biri-commands.comp
 import {BiriRpgComponent} from './biribiri/biri-rpg/biri-rpg.component';
 import {BiriPlayComponent} from './biribiri/biri-play/biri-play.component';
 import {BiriPlayerinfoComponent} from './biribiri/biri-playerinfo/biri-playerinfo.component';
+import {BiriServerlistComponent} from './biribiri/biri-serverlist/biri-serverlist.component';
 
 const routes = [
   {path: '', component: HomepageComponent},
@@ -17,6 +18,7 @@ const routes = [
   {path: 'biribiri/rpg/players/:name', component: BiriPlayerinfoComponent},
   {path: 'biribiri/rpg/play', component: BiriPlayComponent},
   {path: 'biribiri/commands', component: BiriCommandsComponent},
+  {path: 'biribiri/servers', component: BiriServerlistComponent},
   {path: 'running-projects', component: RunningProjectsComponent},
   {path: '**', redirectTo: '', pathMatch: 'full'}
 ];
