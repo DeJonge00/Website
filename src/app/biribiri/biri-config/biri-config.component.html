@@ -1,0 +1,73 @@
+<div>
+  <h2>
+    Biri's servers which you can configure
+  </h2>
+  <div *ngIf="!servers" class="alert alert-dismissible alert-secondary">
+    Command data retrieval in progress.
+  </div>
+  <div *ngIf="servers == []" class="alert alert-dismissible alert-secondary">
+    No servers found to config.
+  </div>
+
+  <div class="row">
+    <ul class="list-group halfwidth" *ngIf="servers">
+
+      <div class="alert alert-dismissible alert-danger" *ngIf="servers.length == 0">
+        It seems like there is no data that can be shown...
+      </div>
+
+      <li *ngFor="let server of servers" (click)="selectServer(server)"
+          class="list-group-item d-flex justify-content-between align-items-center">
+        {{server.name}}
+        <span class="badge badge-primary badge-pill">Members: {{server.members}}</span>
+      </li>
+    </ul>
+    <div *ngIf="selection" class="card text-white bg-primary mb-3 halfwidth">
+      <div class="card-header" style="height: 80px">
+        <h3>{{selection.name}}</h3>
+        <img *ngIf="selection.icon" src="{{selection.icon}}"
+             style="height: 60px; position: absolute; right: 10px; top: 10px;">
+      </div>
+      <div *ngIf="!config" class="alert alert-dismissible alert-secondary">
+        Config retrieval in progress.
+      </div>
+      <div *ngIf="config" class="card-body">
+        <div class="row">
+          <div class="col">
+            Welcome channel:
+          </div>
+          <div class="col" *ngIf="config.welcome">
+            {{channelIdToName(config.welcome.id)}}
+          </div>
+          <div class="col" *ngIf="!config.welcome">
+            No channel set
+          </div>
+          <div class="col">
+            <button type="button" class="btn btn-primary"></button>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            Goodbye channel:
+          </div>
+          <div class="col" *ngIf="config.goodbye">
+            {{channelIdToName(config.goodbye.id)}}
+          </div>
+          <div class="col" *ngIf="!config.goodbye">
+            No channel set
+          </div>
+          <div class="col">
+            <button type="button" class="btn btn-primary"></button>
+          </div>
+        </div>
+
+        <div class="row">
+          <button type="button" class="btn btn-primary" style="width: 40%; margin: 10px 30% 0 30%;">
+            Save changes
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

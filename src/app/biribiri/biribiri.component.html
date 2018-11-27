@@ -19,6 +19,20 @@
   </div>
 
   <div class="card text-white bg-primary mb-3" style="max-width: 20rem; margin: 10px;">
+    <div class="card-header">Biribiri Configuration</div>
+    <div class="card-body">
+      <p class="card-text">
+        Configure Biri for all the servers you have permissions for
+      </p>
+    </div>
+    <div class="card-footer">
+      <button type="button" routerLink="/biribiri/config" class="btn btn-primary fullwidth">
+        Config
+      </button>
+    </div>
+  </div>
+
+  <div class="card text-white bg-primary mb-3" style="max-width: 20rem; margin: 10px;">
     <div class="card-header">Biribiri RPG</div>
     <div class="card-body">
       <p class="card-text">
@@ -35,7 +49,7 @@
     </div>
   </div>
 
-  <div class="card text-white bg-primary mb-3" style="max-width: 20rem; margin: 10px;">
+  <div *ngIf="discord.is_admin" class="card text-white bg-primary mb-3" style="max-width: 20rem; margin: 10px;">
     <div class="card-header">Statistics</div>
     <div class="card-body">
       <p class="card-text">

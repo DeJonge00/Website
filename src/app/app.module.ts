@@ -16,6 +16,10 @@ import { BiriRpgComponent } from './biribiri/biri-rpg/biri-rpg.component';
 import { BiriPlayComponent } from './biribiri/biri-play/biri-play.component';
 import { BiriPlayerinfoComponent } from './biribiri/biri-playerinfo/biri-playerinfo.component';
 import { BiriServerlistComponent } from './biribiri/biri-serverlist/biri-serverlist.component';
+import { BiriServerinfoComponent } from './biribiri/biri-serverinfo/biri-serverinfo.component';
+import { DiscordLoginComponent } from './discord-login/discord-login.component';
+import {CookieService} from 'ngx-cookie-service';
+import { BiriConfigComponent } from './biribiri/biri-config/biri-config.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +34,10 @@ import { BiriServerlistComponent } from './biribiri/biri-serverlist/biri-serverl
     BiriRpgComponent,
     BiriPlayComponent,
     BiriPlayerinfoComponent,
-    BiriServerlistComponent
+    BiriServerlistComponent,
+    BiriServerinfoComponent,
+    DiscordLoginComponent,
+    BiriConfigComponent
   ],
   imports: [
     HttpClientModule,
@@ -38,7 +45,7 @@ import { BiriServerlistComponent } from './biribiri/biri-serverlist/biri-serverl
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

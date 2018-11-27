@@ -1,0 +1,7 @@
+<div *ngIf="!name" class="alert alert-dismissible alert-secondary">
+  Waiting for server response.
+</div>
+
+<div *ngIf="name" class="alert alert-dismissible alert-success">
+  You are logged in as {{name}}
+</div>

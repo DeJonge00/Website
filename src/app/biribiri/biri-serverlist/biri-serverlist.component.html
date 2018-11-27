@@ -2,8 +2,10 @@
   <h2>
     Biri serverlist
   </h2>
-
-  <div *ngIf="!servers" class="alert alert-dismissible alert-secondary">
+  <div *ngIf="!discord.is_admin" class="alert alert-dismissible alert-secondary">
+    Checking authorization.
+  </div>
+  <div *ngIf="discord.is_admin && !servers" class="alert alert-dismissible alert-secondary">
     Command data retrieval in progress.
   </div>
 

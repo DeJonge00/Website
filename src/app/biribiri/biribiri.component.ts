@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {DiscordApiService} from '../discord-api.service';
 
 @Component({
   selector: 'app-biribiri',
@@ -7,11 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BiribiriComponent implements OnInit {
 
-  constructor() { }
+  constructor(private discord: DiscordApiService) { }
 
   ngOnInit() {
+    this.discord.checkAuth();
   }
-
-
-
 }

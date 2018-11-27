@@ -37,4 +37,12 @@ export class GeneralApiService {
   getServerList() {
     return this.http.get(environment.api_url + 'servers', this.getHttpOptions());
   }
+
+  getServer(id: string) {
+    return this.http.get(environment.api_url + 'servers/' + id, this.getHttpOptions());
+  }
+
+  getServerConfig(id: string) {
+    return this.http.get(environment.api_url + 'servers/' + id + '/config', this.getHttpOptions());
+  }
 }
