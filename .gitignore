@@ -62,4 +62,6 @@ typings/
 
 # Secret vars
 **/environments
+*/environments/*
 */environment.ts
+environment.ts
