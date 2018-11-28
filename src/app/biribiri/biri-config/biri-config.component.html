@@ -10,6 +10,7 @@
   </div>
 
   <div class="row">
+    <!-- Server listing -->
     <ul class="list-group halfwidth" *ngIf="servers">
 
       <div class="alert alert-dismissible alert-danger" *ngIf="servers.length == 0">
@@ -22,48 +23,102 @@
         <span class="badge badge-primary badge-pill">Members: {{server.members}}</span>
       </li>
     </ul>
+
+    <!-- Config data -->
     <div *ngIf="selection" class="card text-white bg-primary mb-3 halfwidth">
       <div class="card-header" style="height: 80px">
         <h3>{{selection.name}}</h3>
-        <img *ngIf="selection.icon" src="{{selection.icon}}"
+        <img *ngIf="selection.icon" src={{selection.icon}}
              style="height: 60px; position: absolute; right: 10px; top: 10px;">
       </div>
       <div *ngIf="!config" class="alert alert-dismissible alert-secondary">
         Config retrieval in progress.
       </div>
       <div *ngIf="config" class="card-body">
+
+        <!-- Prefix config data -->
+        <div class="row">
+          <div class="col">
+            Prefix:
+          </div>
+          <div class="col">
+            <form [formGroup]="channelForm">
+              <input type="text" formControlName="prefix" class="form-control" placeholder={{config.prefix}}>
+            </form>
+          </div>
+          <div class="col">
+          </div>
+        </div>
+
+        <!-- Delete commands config data -->
+        <div class="row">
+          <div class="col">
+            Commands will be deleted:
+          </div>
+          <div class="col">
+            {{config.delete_commands}}
+          </div>
+          <div class="col">
+          </div>
+        </div>
+
+        <!-- Welcome config data -->
         <div class="row">
           <div class="col">
             Welcome channel:
           </div>
-          <div class="col" *ngIf="config.welcome">
-            {{channelIdToName(config.welcome.id)}}
-          </div>
-          <div class="col" *ngIf="!config.welcome">
-            No channel set
+          <div class="col">
+            <form [formGroup]="channelForm">
+              <select formControlName="welcomeChannel" class="custom-select">
+                <option [value]="channel.channelid" *ngFor="let channel of selection.channels.text">{{channel.name}}</option>
+              </select>
+            </form>
           </div>
           <div class="col">
-            <button type="button" class="btn btn-primary"></button>
+            <form [formGroup]="channelForm">
+              <input type="text" formControlName="welcomeText" class="form-control" placeholder={{config.welcome.text}}>
+            </form>
           </div>
         </div>
 
+        <!-- Goodbye config data -->
         <div class="row">
           <div class="col">
             Goodbye channel:
           </div>
-          <div class="col" *ngIf="config.goodbye">
-            {{channelIdToName(config.goodbye.id)}}
-          </div>
-          <div class="col" *ngIf="!config.goodbye">
-            No channel set
+          <div class="col">
+            <form [formGroup]="channelForm">
+              <select formControlName="goodbyeChannel" class="custom-select">
+                <option [value]="channel.channelid" *ngFor="let channel of selection.channels.text">{{channel.name}}</option>
+              </select>
+            </form>
           </div>
           <div class="col">
-            <button type="button" class="btn btn-primary"></button>
+            <form [formGroup]="channelForm">
+              <input type="text" formControlName="goodbyeText" class="form-control" placeholder={{config.goodbye.text}}>
+            </form>
           </div>
         </div>
 
+        <!-- Star config data -->
         <div class="row">
-          <button type="button" class="btn btn-primary" style="width: 40%; margin: 10px 30% 0 30%;">
+          <div class="col">
+            Star channel:
+          </div>
+          <div class="col">
+            <form [formGroup]="channelForm">
+              <select formControlName="starChannel" class="custom-select">
+                <option [value]="channel.channelid" *ngFor="let channel of selection.channels.text">{{channel.name}}</option>
+              </select>
+            </form>
+          </div>
+          <div class="col">
+          </div>
+        </div>
+
+        <!-- Save config data button -->
+        <div class="row">
+          <button type="button" (click)="saveConfigChanges()" class="btn btn-primary" style="width: 40%; margin: 10px 30% 0 30%;">
             Save changes
           </button>
         </div>

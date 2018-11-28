@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {DiscordApiService} from '../../discord-api.service';
 import {GeneralApiService} from '../../general-api.service';
+import {FormBuilder, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-biri-config',
@@ -13,7 +14,9 @@ export class BiriConfigComponent implements OnInit {
   selection;
   config;
 
-  constructor(private discord: DiscordApiService, private api: GeneralApiService) {
+  channelForm: FormGroup;
+
+  constructor(private discord: DiscordApiService, private api: GeneralApiService, private fb: FormBuilder) {
   }
 
   ngOnInit() {
@@ -26,22 +29,39 @@ export class BiriConfigComponent implements OnInit {
     });
   }
 
-  channelIdToName(id: string) {
+  IdToChannel(id: string) {
     for (const s of this.servers) {
       for (const c of s.channels.text) {
-        console.log(c.channelid, c.name)
         if (c.channelid === id) {
-          return c.name;
+          return c;
         }
       }
     }
-    return 'Unknown Channel';
+    return {'name': 'Unknown Channel'};
   }
 
   selectServer(server) {
     this.selection = server;
     this.api.getServerConfig(server.serverid).subscribe(data => {
       this.config = data;
+      this.channelForm = this.fb.group({
+        welcomeChannel: this.IdToChannel(this.config.welcome.id).channelid,
+        welcomeText: this.config.welcome.text,
+        goodbyeChannel: this.IdToChannel(this.config.goodbye.id).channelid,
+        goodbyeText: this.config.goodbye.text,
+        starChannel: this.IdToChannel(this.config.star).channelid,
+        prefix: this.config.prefix
+      });
+    });
+  }
+
+  saveConfigChanges() {
+    const vs = this.channelForm.value;
+    this.api.setServerConfig(this.selection.serverid, {
+      'welcome': {'id': vs.welcomeChannel, 'text': vs.welcomeText},
+      'goodbye': {'id': vs.goodbyeChannel, 'text': vs.goodbyeText},
+      'star': vs.starChannel,
+      'prefix': vs.prefix
     });
   }
 }

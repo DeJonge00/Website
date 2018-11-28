@@ -45,4 +45,11 @@ export class GeneralApiService {
   getServerConfig(id: string) {
     return this.http.get(environment.api_url + 'servers/' + id + '/config', this.getHttpOptions());
   }
+
+  setServerConfig(id: string, config: {}) {
+    console.log(config);
+    this.http.post(environment.api_url + 'servers/' + id + '/config', config, this.getHttpOptions()).subscribe(data => {
+      console.log(data);
+    });
+  }
 }

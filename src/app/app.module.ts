@@ -20,6 +20,8 @@ import { BiriServerinfoComponent } from './biribiri/biri-serverinfo/biri-serveri
 import { DiscordLoginComponent } from './discord-login/discord-login.component';
 import {CookieService} from 'ngx-cookie-service';
 import { BiriConfigComponent } from './biribiri/biri-config/biri-config.component';
+import { TestComponent } from './test/test.component';
+import {ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -37,13 +39,15 @@ import { BiriConfigComponent } from './biribiri/biri-config/biri-config.componen
     BiriServerlistComponent,
     BiriServerinfoComponent,
     DiscordLoginComponent,
-    BiriConfigComponent
+    BiriConfigComponent,
+    TestComponent
   ],
   imports: [
     HttpClientModule,
     MarkdownModule.forRoot({loader: HttpClient}),
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [CookieService],
   bootstrap: [AppComponent]
