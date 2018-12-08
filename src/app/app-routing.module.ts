@@ -11,10 +11,12 @@ import {BiriPlayerinfoComponent} from './biribiri/biri-playerinfo/biri-playerinf
 import {BiriServerlistComponent} from './biribiri/biri-serverlist/biri-serverlist.component';
 import {DiscordLoginComponent} from './discord-login/discord-login.component';
 import {BiriConfigComponent} from './biribiri/biri-config/biri-config.component';
+import {DiscordComponent} from './discord/discord.component';
 
 const routes = [
   {path: '', component: HomepageComponent},
   {path: 'biribiri', component: BiribiriComponent},
+  {path: 'discord', component: DiscordComponent},
   {path: 'biribiri/help', component: BiriHelpComponent},
   {path: 'biribiri/rpg', component: BiriRpgComponent},
   {path: 'biribiri/rpg/players/:name', component: BiriPlayerinfoComponent},

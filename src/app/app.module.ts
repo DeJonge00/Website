@@ -22,6 +22,7 @@ import {CookieService} from 'ngx-cookie-service';
 import { BiriConfigComponent } from './biribiri/biri-config/biri-config.component';
 import { TestComponent } from './test/test.component';
 import {ReactiveFormsModule} from '@angular/forms';
+import { DiscordComponent } from './discord/discord.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import {ReactiveFormsModule} from '@angular/forms';
     BiriServerinfoComponent,
     DiscordLoginComponent,
     BiriConfigComponent,
-    TestComponent
+    TestComponent,
+    DiscordComponent
   ],
   imports: [
     HttpClientModule,
