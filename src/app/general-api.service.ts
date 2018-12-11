@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {environment} from '../environments/environment';
 import {reflectTypeEntityToDeclaration} from '@angular/compiler-cli/src/ngtsc/metadata';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +28,15 @@ export class GeneralApiService {
   }
 
   getActiveUsers() {
-    return this.http.get(environment.api_url + 'rpg/players', this.getHttpOptions());
+    return this.getActiveUsersArgs(1, 25);
+  }
+
+  getActiveUsersArgs(page, limit) {
+    return this.http.get(environment.api_url + 'rpg/players?page=' + page + '&limit=' + limit, this.getHttpOptions());
+  }
+
+  getActiveUsersCount(): Observable<{'count': number}> {
+    return this.http.get<{'count': number}>(environment.api_url + 'rpg/players/count', this.getHttpOptions());
   }
 
   getPlayerData(id: string) {
@@ -47,9 +56,6 @@ export class GeneralApiService {
   }
 
   setServerConfig(id: string, config: {}) {
-    console.log(config);
-    this.http.post(environment.api_url + 'servers/' + id + '/config', config, this.getHttpOptions()).subscribe(data => {
-      console.log(data);
-    });
+    return this.http.post(environment.api_url + 'servers/' + id + '/config', config, this.getHttpOptions());
   }
 }

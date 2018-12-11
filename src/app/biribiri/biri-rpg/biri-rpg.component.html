@@ -4,17 +4,31 @@
   <div *ngIf="!players" class="alert alert-dismissible alert-secondary">
     Player data retrieval in progress.
   </div>
+
+  <!-- Page buttons -->
+  <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups" style="margin-left: 120px; margin-bottom: 5px">
+    <div class="btn-group mr-2" role="group" aria-label="First group">
+      <div *ngFor="let i of nums(total_pages)">
+        <a *ngIf="i!==page" class="btn btn-primary" href="/biribiri/rpg?page={{i}}">{{i}}</a>
+        <a *ngIf="i===page" class="btn btn-secondary">{{i}}</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- RPG players listing -->
   <table *ngIf="players" class="table table-hover" style="max-width: 1000px">
     <thead>
     <tr>
+      <th scope="col">Rank</th>
       <th scope="col">Name</th>
       <th scope="col">Exp</th>
       <th scope="col">Role</th>
     </tr>
     </thead>
     <tr *ngFor="let player of players" routerLink="/biribiri/rpg/players/{{player.userid}}">
+      <td>{{getRank(player)}}</td>
       <td>{{player.stats.name}}</td>
-      <td>{{player.exp}}</td>
+      <td>Level {{player.level}}, {{player.exp}} exp</td>
       <td>{{player.role}}</td>
     </tr>
   </table>

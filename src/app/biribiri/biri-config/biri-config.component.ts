@@ -14,6 +14,8 @@ export class BiriConfigComponent implements OnInit {
   selection;
   config;
 
+  error;
+
   channelForm: FormGroup;
 
   constructor(private discord: DiscordApiService, private api: GeneralApiService, private fb: FormBuilder) {
@@ -50,7 +52,8 @@ export class BiriConfigComponent implements OnInit {
         goodbyeChannel: this.IdToChannel(this.config.goodbye.id).channelid,
         goodbyeText: this.config.goodbye.text,
         starChannel: this.IdToChannel(this.config.star).channelid,
-        prefix: this.config.prefix
+        prefix: this.config.prefix,
+        delete_commands: this.config.delete_commands
       });
     });
   }
@@ -61,7 +64,10 @@ export class BiriConfigComponent implements OnInit {
       'welcome': {'id': vs.welcomeChannel, 'text': vs.welcomeText},
       'goodbye': {'id': vs.goodbyeChannel, 'text': vs.goodbyeText},
       'star': vs.starChannel,
-      'prefix': vs.prefix
+      'prefix': vs.prefix,
+      'delete_commands': vs.delete_commands
+    }).subscribe(data => {
+      this.error = false;
     });
   }
 }

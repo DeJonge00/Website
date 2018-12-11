@@ -35,6 +35,15 @@
         Config retrieval in progress.
       </div>
       <div *ngIf="config" class="card-body">
+        <!-- Let the user know saving succeeded -->
+        <div class="row">
+          <div *ngIf="error===false" class="col alert alert-dismissible alert-success">
+            Data successfully saved
+          </div>
+          <div *ngIf="error===true" class="col alert alert-dismissible alert-warning">
+            Data saving failed
+          </div>
+        </div>
 
         <!-- Prefix config data -->
         <div class="row">
@@ -56,7 +65,11 @@
             Commands will be deleted:
           </div>
           <div class="col">
-            {{config.delete_commands}}
+            <form [formGroup]="channelForm">
+              <select formControlName="delete_commands" class="custom-select">
+                <option [value]="value" *ngFor="let value of ['true', 'false']">{{value}}</option>
+              </select>
+            </form>
           </div>
           <div class="col">
           </div>
@@ -70,7 +83,8 @@
           <div class="col">
             <form [formGroup]="channelForm">
               <select formControlName="welcomeChannel" class="custom-select">
-                <option [value]="channel.channelid" *ngFor="let channel of selection.channels.text">{{channel.name}}</option>
+                <option [value]="channel.channelid"
+                        *ngFor="let channel of selection.channels.text">{{channel.name}}</option>
               </select>
             </form>
           </div>
@@ -89,7 +103,8 @@
           <div class="col">
             <form [formGroup]="channelForm">
               <select formControlName="goodbyeChannel" class="custom-select">
-                <option [value]="channel.channelid" *ngFor="let channel of selection.channels.text">{{channel.name}}</option>
+                <option [value]="channel.channelid"
+                        *ngFor="let channel of selection.channels.text">{{channel.name}}</option>
               </select>
             </form>
           </div>
@@ -108,7 +123,8 @@
           <div class="col">
             <form [formGroup]="channelForm">
               <select formControlName="starChannel" class="custom-select">
-                <option [value]="channel.channelid" *ngFor="let channel of selection.channels.text">{{channel.name}}</option>
+                <option [value]="channel.channelid"
+                        *ngFor="let channel of selection.channels.text">{{channel.name}}</option>
               </select>
             </form>
           </div>
@@ -118,7 +134,8 @@
 
         <!-- Save config data button -->
         <div class="row">
-          <button type="button" (click)="saveConfigChanges()" class="btn btn-primary" style="width: 40%; margin: 10px 30% 0 30%;">
+          <button type="button" (click)="saveConfigChanges()" class="btn btn-primary"
+                  style="width: 40%; margin: 10px 30% 0 30%;">
             Save changes
           </button>
         </div>
