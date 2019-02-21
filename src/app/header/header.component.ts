@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {environment} from '../../environments/environment';
+import {CookieService} from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-header',
@@ -9,10 +10,20 @@ import {environment} from '../../environments/environment';
 export class HeaderComponent implements OnInit {
 
   url = environment.discord_login_url;
+  name = '';
 
-  constructor() { }
+  constructor(private cookie: CookieService) { }
 
   ngOnInit() {
+    const t = this.cookie.get('disname');
+    if (t) {
+      this.name = t;
+    }
   }
 
+  logout() {
+    this.cookie.delete('distok');
+    this.cookie.delete('disname');
+    this.name = '';
+  }
 }

@@ -39,13 +39,14 @@ export class DiscordLoginComponent implements OnInit {
       this.cookie.set('distok', token, exp);
       this.token = this.cookie.get('distok');
       this.discord.checkAuth();
-      this.getName();
+      this.getName(exp);
     });
   }
 
-  getName() {
+  getName(exp) {
     this.discord.getUser().subscribe(data => {
       this.name = data.username;
+      this.cookie.set('disname', data.username, exp);
     });
   }
 }

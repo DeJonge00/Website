@@ -14,5 +14,6 @@
       </li>
     </ul>
   </div>
-  <a href={{url}} type="button" class="btn btn-primary">Login with discord</a>
+  <a *ngIf="!name" href={{url}} type="button" class="btn btn-primary">Login with discord</a>
+  <a *ngIf="name" type="button" (click)="logout()" class="btn btn-primary">Log out </a>
 </nav>
