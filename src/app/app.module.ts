@@ -23,6 +23,9 @@ import { BiriConfigComponent } from './biribiri/biri-config/biri-config.componen
 import { TestComponent } from './test/test.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import { DiscordComponent } from './discord/discord.component';
+import { DndComponent } from './rpg/dnd/dnd.component';
+import { RaceComponent } from './rpg/dnd/race/race.component';
+import { ClassComponent } from './rpg/dnd/class/class.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +45,10 @@ import { DiscordComponent } from './discord/discord.component';
     DiscordLoginComponent,
     BiriConfigComponent,
     TestComponent,
-    DiscordComponent
+    DiscordComponent,
+    DndComponent,
+    RaceComponent,
+    ClassComponent
   ],
   imports: [
     HttpClientModule,

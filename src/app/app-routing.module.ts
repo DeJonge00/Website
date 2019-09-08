@@ -12,6 +12,7 @@ import {BiriServerlistComponent} from './biribiri/biri-serverlist/biri-serverlis
 import {DiscordLoginComponent} from './discord-login/discord-login.component';
 import {BiriConfigComponent} from './biribiri/biri-config/biri-config.component';
 import {DiscordComponent} from './discord/discord.component';
+import {DndComponent} from './rpg/dnd/dnd.component';
 
 const routes = [
   {path: '', component: HomepageComponent},
@@ -25,6 +26,7 @@ const routes = [
   {path: 'biribiri/config', component: BiriConfigComponent},
   {path: 'biribiri/servers', component: BiriServerlistComponent},
   {path: 'running-projects', component: RunningProjectsComponent},
+  {path: 'rpg/dnd', component: DndComponent},
   {path: 'discordlogin', component: DiscordLoginComponent},
   {path: '**', redirectTo: '', pathMatch: 'full'}
 ];

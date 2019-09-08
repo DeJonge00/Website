@@ -1,0 +1,85 @@
+<div class="row">
+  <div class="card text-white bg-primary mb-3" style="min-width: 20rem; margin: 10px;">
+    <div class="card-header">Sources</div>
+    <div class="card-body">
+      <fieldset class="form-group">
+        <div class="form-check">
+          <li *ngFor="let s of sources">
+            <label class="form-check-label">
+              <input class="form-check-input" type="checkbox" [checked]="s.enabled" (click)="onSelectSource(s.id)">
+              {{s.name}}
+            </label>
+          </li>
+        </div>
+      </fieldset>
+    </div>
+  </div>
+
+  <div class="card text-white bg-primary mb-3" style="min-width: 20rem; margin: 10px;">
+    <div class="card-header">Races</div>
+    <div class="card-body">
+      <fieldset class="form-group">
+        <div class="form-check">
+          <li *ngFor="let r of races">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="optionsRadiosRaces" (click)="onSelectRace(r)">
+              {{r.name}}
+            </label>
+          </li>
+        </div>
+      </fieldset>
+    </div>
+  </div>
+
+  <div class="card text-white bg-primary mb-3" style="min-width: 20rem; margin: 10px;">
+    <div class="card-header">Classes</div>
+    <div class="card-body">
+      <fieldset class="form-group">
+        <div class="form-check">
+          <div *ngFor="let c of classes">
+            <b>{{c}}</b>
+            <li *ngFor="let s of subclasses[c]">
+              <label class="form-check-label">
+                <input type="radio" class="form-check-input" name="optionsRadiosClasses" (click)="onSelectClass(c, s)">
+                {{s}}
+              </label>
+            </li>
+            <br/>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+  </div>
+
+  <div class="card text-white bg-primary mb-3" style="min-width: 20rem; margin: 10px;">
+    <div class="card-header">Backgrounds</div>
+    <div class="card-body">
+      <fieldset class="form-group">
+        <div class="form-check">
+          <li *ngFor="let b of backgrounds">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="optionsRadiosClasses" (click)="onSelectBackground(b)">
+              {{b.name}}
+            </label>
+          </li>
+        </div>
+      </fieldset>
+    </div>
+  </div>
+
+  <div class="card text-white bg-primary mb-3" style="min-width: 20rem; margin: 10px;"
+       *ngIf="chosen_race || chosen_class || chosen_background">
+    <div class="card-header">Character</div>
+    <div class="card-body">
+      <div *ngIf="chosen_race">
+        Race: {{chosen_race.name}}
+      </div>
+      <div *ngIf="chosen_subclass">
+        Class: {{chosen_class}} ({{chosen_subclass}})
+      </div>
+      <div *ngIf="chosen_background">
+        Background: {{chosen_background.name}}
+      </div>
+    </div>
+  </div>
+</div>
