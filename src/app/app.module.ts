@@ -10,22 +10,22 @@ import {FooterComponent} from './footer/footer.component';
 import {RunningProjectsComponent} from './running-projects/running-projects.component';
 import {BiriCommandsComponent} from './biribiri/biri-commands/biri-commands.component';
 import {MarkdownModule} from 'ngx-markdown';
-import {HttpClientModule, HttpClient} from "@angular/common/http";
-import { BiriHelpComponent } from './biribiri/biri-help/biri-help.component';
-import { BiriRpgComponent } from './biribiri/biri-rpg/biri-rpg.component';
-import { BiriPlayComponent } from './biribiri/biri-play/biri-play.component';
-import { BiriPlayerinfoComponent } from './biribiri/biri-playerinfo/biri-playerinfo.component';
-import { BiriServerlistComponent } from './biribiri/biri-serverlist/biri-serverlist.component';
-import { BiriServerinfoComponent } from './biribiri/biri-serverinfo/biri-serverinfo.component';
-import { DiscordLoginComponent } from './discord-login/discord-login.component';
+import {HttpClientModule, HttpClient} from '@angular/common/http';
+import {BiriHelpComponent} from './biribiri/biri-help/biri-help.component';
+import {BiriRpgComponent} from './biribiri/biri-rpg/biri-rpg.component';
+import {BiriPlayComponent} from './biribiri/biri-play/biri-play.component';
+import {BiriPlayerinfoComponent} from './biribiri/biri-playerinfo/biri-playerinfo.component';
+import {BiriServerlistComponent} from './biribiri/biri-serverlist/biri-serverlist.component';
+import {BiriServerinfoComponent} from './biribiri/biri-serverinfo/biri-serverinfo.component';
+import {DiscordLoginComponent} from './discord-login/discord-login.component';
 import {CookieService} from 'ngx-cookie-service';
-import { BiriConfigComponent } from './biribiri/biri-config/biri-config.component';
-import { TestComponent } from './test/test.component';
+import {BiriConfigComponent} from './biribiri/biri-config/biri-config.component';
+import {TestComponent} from './test/test.component';
 import {ReactiveFormsModule} from '@angular/forms';
-import { DiscordComponent } from './discord/discord.component';
-import { DndComponent } from './rpg/dnd/dnd.component';
-import { RaceComponent } from './rpg/dnd/race/race.component';
-import { ClassComponent } from './rpg/dnd/class/class.component';
+import {DiscordComponent} from './discord/discord.component';
+import {DndComponent} from './rpg/dnd/dnd.component';
+import {DndClassComponent} from './rpg/dnd/class/dnd-class.component';
+import {DndRaceComponent} from './rpg/dnd/race/dnd-race.component';
 
 @NgModule({
   declarations: [
@@ -47,8 +47,8 @@ import { ClassComponent } from './rpg/dnd/class/class.component';
     TestComponent,
     DiscordComponent,
     DndComponent,
-    RaceComponent,
-    ClassComponent
+    DndClassComponent,
+    DndRaceComponent
   ],
   imports: [
     HttpClientModule,

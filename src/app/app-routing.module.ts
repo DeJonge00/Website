@@ -13,6 +13,8 @@ import {DiscordLoginComponent} from './discord-login/discord-login.component';
 import {BiriConfigComponent} from './biribiri/biri-config/biri-config.component';
 import {DiscordComponent} from './discord/discord.component';
 import {DndComponent} from './rpg/dnd/dnd.component';
+import {DndClassComponent} from './rpg/dnd/class/dnd-class.component';
+import {DndRaceComponent} from './rpg/dnd/race/dnd-race.component';
 
 const routes = [
   {path: '', component: HomepageComponent},
@@ -26,7 +28,11 @@ const routes = [
   {path: 'biribiri/config', component: BiriConfigComponent},
   {path: 'biribiri/servers', component: BiriServerlistComponent},
   {path: 'running-projects', component: RunningProjectsComponent},
-  {path: 'rpg/dnd', component: DndComponent},
+  {path: 'dnd', component: DndComponent},
+  {path: 'dnd/class', component: DndClassComponent},
+  {path: 'dnd/class/:name', component: DndClassComponent},
+  {path: 'dnd/race', component: DndRaceComponent},
+  {path: 'dnd/race/:name', component: DndRaceComponent},
   {path: 'discordlogin', component: DiscordLoginComponent},
   {path: '**', redirectTo: '', pathMatch: 'full'}
 ];

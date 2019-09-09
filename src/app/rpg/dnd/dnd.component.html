@@ -1,6 +1,6 @@
 <div class="row">
   <div class="card text-white bg-primary mb-3" style="min-width: 20rem; margin: 10px;">
-    <div class="card-header">Sources</div>
+    <div class="card-header"><a routerLink="/dnd/source">Sources</a></div>
     <div class="card-body">
       <fieldset class="form-group">
         <div class="form-check">
@@ -16,14 +16,14 @@
   </div>
 
   <div class="card text-white bg-primary mb-3" style="min-width: 20rem; margin: 10px;">
-    <div class="card-header">Races</div>
+    <div class="card-header"><a routerLink="/dnd/race">Races</a></div>
     <div class="card-body">
       <fieldset class="form-group">
         <div class="form-check">
           <li *ngFor="let r of races">
             <label class="form-check-label">
               <input type="radio" class="form-check-input" name="optionsRadiosRaces" (click)="onSelectRace(r)">
-              {{r.name}}
+              <a routerLink="/dnd/race/{{r.id}}">{{r.name}}</a>
             </label>
           </li>
         </div>
@@ -32,16 +32,16 @@
   </div>
 
   <div class="card text-white bg-primary mb-3" style="min-width: 20rem; margin: 10px;">
-    <div class="card-header">Classes</div>
+    <div class="card-header"><a routerLink="/dnd/class">Classes</a></div>
     <div class="card-body">
       <fieldset class="form-group">
         <div class="form-check">
           <div *ngFor="let c of classes">
-            <b>{{c}}</b>
-            <li *ngFor="let s of subclasses[c]">
+            <b><a routerLink="/dnd/class/{{c.id}}">{{c.name}}</a></b>
+            <li *ngFor="let s of subclasses[c.name]">
               <label class="form-check-label">
                 <input type="radio" class="form-check-input" name="optionsRadiosClasses" (click)="onSelectClass(c, s)">
-                {{s}}
+                {{s.name}}
               </label>
             </li>
             <br/>
@@ -52,7 +52,7 @@
   </div>
 
   <div class="card text-white bg-primary mb-3" style="min-width: 20rem; margin: 10px;">
-    <div class="card-header">Backgrounds</div>
+    <div class="card-header"><a routerLink="/dnd/background">Backgrounds</a></div>
     <div class="card-body">
       <fieldset class="form-group">
         <div class="form-check">
@@ -72,13 +72,19 @@
     <div class="card-header">Character</div>
     <div class="card-body">
       <div *ngIf="chosen_race">
-        Race: {{chosen_race.name}}
+        Race: {{chosen_race.name}}<br />
+        <i>{{chosen_race.short_desc}}</i><br /><br />
       </div>
       <div *ngIf="chosen_subclass">
-        Class: {{chosen_class}} ({{chosen_subclass}})
+        Class: {{chosen_class.name}}<br />
+        <i>{{chosen_class.short_desc}}</i><br /><br />
+        Subclass: {{chosen_subclass.name}}<br />
+        <i>{{chosen_subclass.short_desc}}</i><br /><br />
+        <br />
       </div>
       <div *ngIf="chosen_background">
-        Background: {{chosen_background.name}}
+        Background: {{chosen_background.name}}<br />
+        <i>{{chosen_background.short_desc}}</i>
       </div>
     </div>
   </div>

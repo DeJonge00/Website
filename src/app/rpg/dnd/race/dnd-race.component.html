@@ -1,0 +1,175 @@
+<div class="alert alert-dismissible alert-primary" *ngIf="!chosen_race">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <h4 class="alert-heading">Retrieving data</h4>
+  <p class="mb-0">Data is being retrieved</p>
+</div>
+
+<div class="card text-white bg-primary mb-3" style="max-width: 20rem;" *ngIf="chosen_race && !no_result">
+  <div class="card-header">Class information</div>
+  <div class="card-body">
+    <h4 class="card-title">{{chosen_race.name}}</h4>
+    <p class="card-text">{{chosen_race.long_desc}}</p>
+  </div>
+</div>
+
+<div *ngIf="no_result" class="card text-white bg-primary mb-3">
+  <div class="card-header">
+    <h2 class="card-title">Create a new race</h2>
+  </div>
+  <div *ngIf="!discord.is_admin" class="card-body">
+    Login to add a new race to the website
+  </div>
+  <div *ngIf="discord.is_admin" class="card-body">
+    <!-- Let the user know saving succeeded -->
+    <div class="row">
+      <div *ngIf="error===false" class="col alert alert-dismissible alert-success">
+        Data successfully saved
+      </div>
+      <div *ngIf="error===true" class="col alert alert-dismissible alert-warning">
+        Data saving failed
+      </div>
+    </div>
+
+    <!-- Name config data -->
+    <div class="row">
+      <div class="col">
+        Name:
+      </div>
+      <div class="col">
+        <form [formGroup]="channelForm">
+          <input type="text" formControlName="name" class="form-control" placeholder={{config.prefix}}>
+        </form>
+      </div>
+    </div>
+
+    <!-- Short description -->
+    <div class="row">
+      <div class="col">
+        Short description:
+      </div>
+      <div class="col">
+        <form [formGroup]="channelForm">
+          <textarea type="text" formControlName="short_desc" class="form-control" rows="3"></textarea>
+        </form>
+      </div>
+    </div>
+
+    <!-- Long description -->
+    <div class="row">
+      <div class="col">
+        Long description:
+      </div>
+      <div class="col">
+        <form [formGroup]="channelForm">
+          <textarea type="text" formControlName="long_desc" class="form-control" rows="8"></textarea>
+        </form>
+      </div>
+    </div>
+
+    <!-- Ability score increase -->
+    <div class="row">
+      <div class="col">
+        Ability score increase:
+      </div>
+      <div class="col">
+        <form [formGroup]="channelForm">
+          <input type="text" formControlName="asi" class="form-control">
+        </form>
+      </div>
+    </div>
+
+    <!-- Age -->
+    <div class="row">
+      <div class="col">
+        Age:
+      </div>
+      <div class="col">
+        <form [formGroup]="channelForm">
+          <input type="text" formControlName="age" class="form-control">
+        </form>
+      </div>
+    </div>
+
+    <!-- Alignment -->
+    <div class="row">
+      <div class="col">
+        Alignment:
+      </div>
+      <div class="col">
+        <form [formGroup]="channelForm">
+          <input type="text" formControlName="alignment" class="form-control">
+        </form>
+      </div>
+    </div>
+
+    <!-- Size -->
+    <div class="row">
+      <div class="col">
+        Size:
+      </div>
+      <div class="col">
+        <form [formGroup]="channelForm">
+          <input type="text" formControlName="size" class="form-control">
+        </form>
+      </div>
+    </div>
+
+    <!-- Speed -->
+    <div class="row">
+      <div class="col">
+        Speed:
+      </div>
+      <div class="col">
+        <form [formGroup]="channelForm">
+          <input type="text" formControlName="speed" class="form-control">
+        </form>
+      </div>
+    </div>
+
+    <!-- Racial abilities -->
+    <div class="row">
+      <div class="col">
+        Racial abilities:
+      </div>
+      <div class="col">
+        <form [formGroup]="channelForm">
+          <input type="text" formControlName="racial_abilities" class="form-control">
+        </form>
+      </div>
+    </div>
+
+    <!-- Source -->
+    <div class="row">
+      <div class="col">
+        Source:
+      </div>
+      <div class="col">
+        <form [formGroup]="channelForm">
+          <select formControlName="source" class="custom-select">
+            <option [value]="s.id" *ngFor="let s of sources">{{s.name}}</option>
+          </select>
+        </form>
+      </div>
+    </div>
+
+    <!-- ID overwrite -->
+    <div class="row">
+      <div class="col">
+        ID overwrite:
+      </div>
+      <div class="col">
+        <form [formGroup]="channelForm">
+          <input type="text" formControlName="id_overwrite" class="form-control">
+        </form>
+      </div>
+    </div>
+
+    <!-- Save config data button -->
+    <div class="row">
+      <button type="button" (click)="saveNewRace()" class="btn btn-primary"
+              style="width: 40%; margin: 10px 30% 0 30%;">
+        Save changes
+      </button>
+    </div>
+  </div>
+</div>

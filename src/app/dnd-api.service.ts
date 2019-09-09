@@ -29,14 +29,34 @@ export class DndApiService {
     return this.http.get<[{ 'name': string, 'shortname': string, 'id': number, 'enabled': boolean }]>(url, this.getHttpOptions());
   }
 
+  createSource(options) {
+    const url = this.api_url + 'source';
+    return this.http.post<{ 'name': string, 'id': number, 'source': number }>(url, options, this.getHttpOptions());
+  }
+
   getClasses(sources: string) {
     const url = this.api_url + 'class?source=' + sources;
     return this.http.get<[{ 'name': string, 'id': number, 'source': number }]>(url, this.getHttpOptions());
   }
 
+  getClass(name_or_id: string) {
+    const url = this.api_url + 'class/' + name_or_id;
+    return this.http.get<{ 'name': string, 'id': number, 'source': number }>(url, this.getHttpOptions());
+  }
+
+  createClass(options) {
+    const url = this.api_url + 'class';
+    return this.http.post<{ 'name': string, 'id': number, 'source': number }>(url, options, this.getHttpOptions());
+  }
+
   getSubclasses(sources: string) {
     const url = this.api_url + 'subclass?source=' + sources;
-    return this.http.get<{ string: [string] }>(url, this.getHttpOptions());
+    return this.http.get<{ string: [{ 'name': string, 'id': number, 'source': number }] }>(url, this.getHttpOptions());
+  }
+
+  createSubclass(options) {
+    const url = this.api_url + 'subclass';
+    return this.http.post<{ 'name': string, 'id': number, 'source': number }>(url, options, this.getHttpOptions());
   }
 
   getRaces(sources: string) {
@@ -44,9 +64,18 @@ export class DndApiService {
     return this.http.get<[{ 'name': string, 'id': number, 'source': number }]>(url, this.getHttpOptions());
   }
 
+  getRace(name_or_id: string) {
+    const url = this.api_url + 'race/' + name_or_id;
+    return this.http.get<{ 'name': string, 'id': number, 'source': number }>(url, this.getHttpOptions());
+  }
+
+  createRace(options) {
+    const url = this.api_url + 'race';
+    return this.http.post<{ 'name': string, 'id': number, 'source': number }>(url, options, this.getHttpOptions());
+  }
+
   getBackgrounds(sources: string) {
     const url = this.api_url + 'background?source=' + sources;
-    console.log(url);
     return this.http.get<[{ 'name': string, 'id': number, 'source': number }]>(url, this.getHttpOptions());
   }
 }

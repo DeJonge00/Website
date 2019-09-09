@@ -1,0 +1,19 @@
+<div class="alert alert-dismissible alert-primary" *ngIf="!chosen_class">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <h4 class="alert-heading">Retrieving data</h4>
+  <p class="mb-0">Data is being retrieved</p>
+</div>
+
+<div class="alert alert-dismissible alert-warning" *ngIf="no_result">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <h4 class="alert-heading">Warning!</h4>
+  <p class="mb-0">No class found in database</p>
+</div>
+
+<div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
+  <div class="card-header">Class information</div>
+  <div class="card-body">
+    <h4 class="card-title">{{chosen_class.name}}</h4>
+    <p class="card-text">{{chosen_class.long_desc}}</p>
+  </div>
+</div>

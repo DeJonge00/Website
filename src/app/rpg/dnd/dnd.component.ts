@@ -11,7 +11,7 @@ export class DndComponent implements OnInit {
   sources: [{ 'name': string, 'enabled': boolean, 'id': number }];
   races: [{ 'name': string, 'id': number, 'source': number }];
   classes: [{ 'name': string, 'id': number, 'source': number }];
-  subclasses: { string: [string] };
+  subclasses: { string: [{ 'name': string, 'id': number, 'source': number }] };
   backgrounds: [{ 'name': string, 'id': number, 'source': number }];
 
   chosen_race: string;
@@ -64,7 +64,6 @@ export class DndComponent implements OnInit {
   getBackgrounds(sources) {
     this.api.getBackgrounds(sources).subscribe(backgrounds => {
       this.backgrounds = backgrounds;
-      console.log(this.backgrounds);
     });
   }
 
