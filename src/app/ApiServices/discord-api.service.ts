@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
-import {environment} from '../environments/environment';
+import {environment} from '../../environments/environment';
 import {CookieService} from 'ngx-cookie-service';
 import {Observable} from 'rxjs';
 
@@ -13,6 +13,7 @@ export class DiscordApiService {
   is_admin = false;
 
   constructor(private http: HttpClient, private cookie: CookieService) {
+    this.checkAuth();
   }
 
   getHttpOptions() {
@@ -34,7 +35,6 @@ export class DiscordApiService {
 
   checkAuth() {
     this.getUser().subscribe(data => {
-      console.log(data, environment.discord_admin_ids, environment.discord_admin_ids.includes(data.id));
       if (environment.discord_admin_ids.includes(data.id)) {
         this.is_admin = true;
       }

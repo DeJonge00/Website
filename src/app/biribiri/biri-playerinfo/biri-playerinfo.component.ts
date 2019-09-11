@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {GeneralApiService} from '../../general-api.service';
+import {GeneralApiService} from '../../ApiServices/general-api.service';
 
 @Component({
   selector: 'app-biri-playerinfo',

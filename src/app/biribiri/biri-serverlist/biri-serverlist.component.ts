@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {GeneralApiService} from '../../general-api.service';
-import {DiscordApiService} from '../../discord-api.service';
+import {GeneralApiService} from '../../ApiServices/general-api.service';
+import {DiscordApiService} from '../../ApiServices/discord-api.service';
 
 @Component({
   selector: 'app-serverlist',

@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {GeneralApiService} from '../../general-api.service';
+import {GeneralApiService} from '../../ApiServices/general-api.service';
 import {Chart} from '../../../../node_modules/chart.js';
 
 @Component({
@@ -78,7 +78,7 @@ export class BiriCommandsComponent implements OnInit {
     ];
 
     // Add other command counters
-    const command_names = new Set();
+    const command_names = new Set<string>();
     for (const n of this.commands_data) {
       command_names.add(n.command.split(' ')[0]);
     }

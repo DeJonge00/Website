@@ -26,6 +26,10 @@ import {DiscordComponent} from './discord/discord.component';
 import {DndComponent} from './rpg/dnd/dnd.component';
 import {DndClassComponent} from './rpg/dnd/class/dnd-class.component';
 import {DndRaceComponent} from './rpg/dnd/race/dnd-race.component';
+import { DndSourceComponent } from './rpg/dnd/source/dnd-source.component';
+import { DndSubclassComponent } from './rpg/dnd/subclass/dnd-subclass.component';
+import { DndSubraceComponent } from './rpg/dnd/subrace/dnd-subrace.component';
+import { DndBackgroundComponent } from './rpg/dnd/background/dnd-background.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +52,11 @@ import {DndRaceComponent} from './rpg/dnd/race/dnd-race.component';
     DiscordComponent,
     DndComponent,
     DndClassComponent,
-    DndRaceComponent
+    DndRaceComponent,
+    DndSourceComponent,
+    DndSubclassComponent,
+    DndSubraceComponent,
+    DndBackgroundComponent
   ],
   imports: [
     HttpClientModule,

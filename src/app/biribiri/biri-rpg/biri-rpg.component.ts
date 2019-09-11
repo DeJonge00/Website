@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {GeneralApiService} from '../../general-api.service';
+import {GeneralApiService} from '../../ApiServices/general-api.service';
 import {ActivatedRoute} from '@angular/router';
 
 @Component({
@@ -46,6 +46,6 @@ export class BiriRpgComponent implements OnInit {
   }
 
   nums(l: number) {
-    return Array(l).fill(0).map((x, i) => i+1);
+    return Array(l).fill(0).map((x, i) => i + 1);
   }
 }

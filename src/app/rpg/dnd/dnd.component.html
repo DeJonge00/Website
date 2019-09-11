@@ -4,12 +4,12 @@
     <div class="card-body">
       <fieldset class="form-group">
         <div class="form-check">
-          <li *ngFor="let s of sources">
+          <div *ngFor="let s of sources">
             <label class="form-check-label">
               <input class="form-check-input" type="checkbox" [checked]="s.enabled" (click)="onSelectSource(s.id)">
-              {{s.name}}
+              <a routerLink="/dnd/source/{{s.id}}">{{s.name}}</a>
             </label>
-          </li>
+          </div>
         </div>
       </fieldset>
     </div>
@@ -20,12 +20,15 @@
     <div class="card-body">
       <fieldset class="form-group">
         <div class="form-check">
-          <li *ngFor="let r of races">
-            <label class="form-check-label">
-              <input type="radio" class="form-check-input" name="optionsRadiosRaces" (click)="onSelectRace(r)">
-              <a routerLink="/dnd/race/{{r.id}}">{{r.name}}</a>
-            </label>
-          </li>
+          <div *ngFor="let r of races">
+            <a routerLink="/dnd/race/{{r.id}}"><b>{{r.name}}</b></a>
+            <div *ngFor="let s of subraces[r.name]">
+              <label class="form-check-label">
+                <input type="radio" class="form-check-input" name="optionsRadiosRaces" (click)="onSelectRace(r)">
+                <a routerLink="/dnd/subrace/{{s.id}}">{{s.name}}</a>
+              </label>
+            </div>
+          </div>
         </div>
       </fieldset>
     </div>
@@ -38,12 +41,12 @@
         <div class="form-check">
           <div *ngFor="let c of classes">
             <b><a routerLink="/dnd/class/{{c.id}}">{{c.name}}</a></b>
-            <li *ngFor="let s of subclasses[c.name]">
+            <div *ngFor="let s of subclasses[c.name]">
               <label class="form-check-label">
                 <input type="radio" class="form-check-input" name="optionsRadiosClasses" (click)="onSelectClass(c, s)">
-                {{s.name}}
+                <a routerLink="/dnd/subclass/{{s.id}}">{{s.name}}</a>
               </label>
-            </li>
+            </div>
             <br/>
           </div>
         </div>
@@ -56,12 +59,12 @@
     <div class="card-body">
       <fieldset class="form-group">
         <div class="form-check">
-          <li *ngFor="let b of backgrounds">
+          <div *ngFor="let b of backgrounds">
             <label class="form-check-label">
               <input type="radio" class="form-check-input" name="optionsRadiosClasses" (click)="onSelectBackground(b)">
-              {{b.name}}
+              <a routerLink="/dnd/background/{{b.id}}">{{b.name}}</a>
             </label>
-          </li>
+          </div>
         </div>
       </fieldset>
     </div>
@@ -72,18 +75,18 @@
     <div class="card-header">Character</div>
     <div class="card-body">
       <div *ngIf="chosen_race">
-        Race: {{chosen_race.name}}<br />
-        <i>{{chosen_race.short_desc}}</i><br /><br />
+        Race: {{chosen_race.name}}<br/>
+        <i>{{chosen_race.short_desc}}</i><br/><br/>
       </div>
       <div *ngIf="chosen_subclass">
-        Class: {{chosen_class.name}}<br />
-        <i>{{chosen_class.short_desc}}</i><br /><br />
-        Subclass: {{chosen_subclass.name}}<br />
-        <i>{{chosen_subclass.short_desc}}</i><br /><br />
-        <br />
+        Class: {{chosen_class.name}}<br/>
+        <i>{{chosen_class.short_desc}}</i><br/><br/>
+        Subclass: {{chosen_subclass.name}}<br/>
+        <i>{{chosen_subclass.short_desc}}</i><br/><br/>
+        <br/>
       </div>
       <div *ngIf="chosen_background">
-        Background: {{chosen_background.name}}<br />
+        Background: {{chosen_background.name}}<br/>
         <i>{{chosen_background.short_desc}}</i>
       </div>
     </div>

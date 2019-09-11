@@ -1,9 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {DiscordApiService} from '../discord-api.service';
+import {DiscordApiService} from '../ApiServices/discord-api.service';
 import {CookieService} from 'ngx-cookie-service';
 import {ActivatedRoute} from '@angular/router';
-import {HttpHeaders} from '@angular/common/http';
-import {environment} from '../../environments/environment';
 
 @Component({
   selector: 'app-discord-login',

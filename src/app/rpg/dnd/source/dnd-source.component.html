@@ -1,0 +1,93 @@
+<div class="alert alert-dismissible alert-primary" *ngIf="!chosen_source">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <h4 class="alert-heading">Retrieving data</h4>
+  <p class="mb-0">Data is being retrieved</p>
+</div>
+
+<div class="card text-white bg-primary mb-3" style="max-width: 20rem;" *ngIf="chosen_source && !no_result">
+  <div class="card-header">Source information</div>
+  <div class="card-body">
+    <h4 class="card-title">
+      {{chosen_source.name}} ({{chosen_source.short_name}})
+    </h4>
+    <b>Enabled by default:</b> {{chosen_source.enabled}}<br />
+    <b>ID:</b> {{chosen_source.id}}
+  </div>
+</div>
+
+<div *ngIf="no_result" class="card text-white bg-primary mb-3" style="max-width: 1200px">
+  <div class="card-header">
+    <h2 class="card-title">Create a new source</h2>
+  </div>
+  <div *ngIf="!discord.is_admin" class="card-body">
+    Login to add a new source to the website
+  </div>
+  <div *ngIf="discord.is_admin" class="card-body">
+    <!-- Name data -->
+    <div class="row">
+      <div class="col wlimit">
+        Name:
+      </div>
+      <div class="col">
+        <form [formGroup]="channelForm">
+          <input type="text" formControlName="name" class="form-control">
+        </form>
+      </div>
+    </div>
+
+    <!-- Short name -->
+    <div class="row">
+      <div class="col wlimit">
+        Abbreviation:
+      </div>
+      <div class="col">
+        <form [formGroup]="channelForm">
+          <input type="text" formControlName="short_name" class="form-control">
+        </form>
+      </div>
+    </div>
+
+    <!-- Enabled by default -->
+    <div class="row">
+      <div class="col wlimit">
+        Enabled by default:
+      </div>
+      <div class="col">
+        <form [formGroup]="channelForm">
+          <select formControlName="enabled" class="custom-select">
+            <option [value]="s" *ngFor="let s of ['Enabled', 'Disabled']">{{s}}</option>
+          </select>
+        </form>
+      </div>
+    </div>
+
+    <!-- ID overwrite -->
+    <div class="row">
+      <div class="col wlimit">
+        ID overwrite:
+      </div>
+      <div class="col">
+        <form [formGroup]="channelForm">
+          <input type="text" formControlName="id" class="form-control">
+        </form>
+      </div>
+    </div>
+
+    <!-- Save data button -->
+    <div class="row">
+      <button type="button" (click)="saveNewSource()" class="btn btn-primary submit">
+        Save changes
+      </button>
+    </div>
+
+    <!-- Let the user know saving succeeded -->
+    <div class="row">
+      <div *ngIf="error===false" class="col alert alert-dismissible alert-success">
+        Data successfully saved
+      </div>
+      <div *ngIf="error===true" class="col alert alert-dismissible alert-warning">
+        Data saving failed
+      </div>
+    </div>
+  </div>
+</div>

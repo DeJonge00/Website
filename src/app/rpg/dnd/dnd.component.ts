@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {DndApiService} from '../../dnd-api.service';
+import {DndApiService} from '../../ApiServices/dnd-api.service';
+import {markdown} from 'markdown';
 
 @Component({
   selector: 'app-dnd',
@@ -9,15 +10,16 @@ import {DndApiService} from '../../dnd-api.service';
 export class DndComponent implements OnInit {
 
   sources: [{ 'name': string, 'enabled': boolean, 'id': number }];
-  races: [{ 'name': string, 'id': number, 'source': number }];
-  classes: [{ 'name': string, 'id': number, 'source': number }];
-  subclasses: { string: [{ 'name': string, 'id': number, 'source': number }] };
-  backgrounds: [{ 'name': string, 'id': number, 'source': number }];
+  races: [DndRace];
+  subraces: { string: [DndSubrace] };
+  classes: [DndClass];
+  subclasses: { string: [DndSubclass] };
+  backgrounds: [DndBackground];
 
-  chosen_race: string;
-  chosen_class: string;
-  chosen_subclass: string;
-  chosen_background: string;
+  chosen_race: DndRace;
+  chosen_class: DndClass;
+  chosen_subclass: DndSubclass;
+  chosen_background: DndBackground;
 
   constructor(private api: DndApiService) {
   }
@@ -28,6 +30,7 @@ export class DndComponent implements OnInit {
       const s = this.sourceStringBuilder();
       this.getRaces(s);
       this.getClasses(s);
+      this.getSubraces(s);
       this.getSubclasses(s);
       this.getBackgrounds(s);
     });
@@ -49,6 +52,13 @@ export class DndComponent implements OnInit {
     });
   }
 
+  getSubraces(sources) {
+    this.api.getSubraces(sources).subscribe(subraces => {
+      this.subraces = subraces;
+      console.log(subraces);
+    });
+  }
+
   getClasses(sources) {
     this.api.getClasses(sources).subscribe(classes => {
       this.classes = classes;
@@ -58,6 +68,7 @@ export class DndComponent implements OnInit {
   getSubclasses(sources) {
     this.api.getSubclasses(sources).subscribe(subclasses => {
       this.subclasses = subclasses;
+      console.log(subclasses);
     });
   }
 
