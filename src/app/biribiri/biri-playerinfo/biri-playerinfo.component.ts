@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {GeneralApiService} from '../../ApiServices/general-api.service';
+import {GeneralApiService} from '../../api-services/general-api.service';
 
 @Component({
   selector: 'app-biri-playerinfo',
@@ -40,7 +40,7 @@ export class BiriPlayerinfoComponent implements OnInit {
       case 2:
         return this.descStr('Training', minutes);
       case 3:
-        return this.descStr('Preparing a bossraid', minutes);
+        return this.descStr('Preparing asi bossraid', minutes);
       case 4:
         return this.descStr('Wandering', minutes);
       case 5:

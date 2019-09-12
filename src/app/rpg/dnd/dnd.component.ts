@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {DndApiService} from '../../ApiServices/dnd-api.service';
+import {DndApiService} from '../../api-services/dnd-api.service';
 import {markdown} from 'markdown';
+import {DndBackground, DndClass, DndRace, DndSubclass, DndSubrace} from './dndobjects';
 
 @Component({
   selector: 'app-dnd',
@@ -17,6 +18,7 @@ export class DndComponent implements OnInit {
   backgrounds: [DndBackground];
 
   chosen_race: DndRace;
+  chosen_subrace: DndSubrace;
   chosen_class: DndClass;
   chosen_subclass: DndSubclass;
   chosen_background: DndBackground;
@@ -78,8 +80,9 @@ export class DndComponent implements OnInit {
     });
   }
 
-  onSelectRace(player_race) {
+  onSelectRace(player_race, player_subrace) {
     this.chosen_race = player_race;
+    this.chosen_subrace = player_subrace;
   }
 
   onSelectClass(player_class, player_subclass) {

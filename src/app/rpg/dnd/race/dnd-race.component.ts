@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {DndApiService} from '../../../ApiServices/dnd-api.service';
-import {FormBuilder, FormGroup} from '@angular/forms';
-import {DiscordApiService} from '../../../ApiServices/discord-api.service';
+import {DndApiService} from '../../../api-services/dnd-api.service';
+import {FormArray, FormBuilder, FormGroup} from '@angular/forms';
+import {DiscordApiService} from '../../../api-services/discord-api.service';
+import {ASI, DndRace} from '../dndobjects';
 
 @Component({
   selector: 'app-race',
@@ -15,8 +16,9 @@ export class DndRaceComponent implements OnInit {
   no_result = false;
   error: boolean;
   chosen_race: DndRace;
+  ASI = ASI;
 
-  channelForm: FormGroup;
+  creationForm: FormGroup;
   sources = [];
   races = [];
 
@@ -62,20 +64,60 @@ export class DndRaceComponent implements OnInit {
   }
 
   setForm() {
-    this.channelForm = this.fb.group({
+    this.creationForm = this.fb.group({
       name: '',
       short_desc: '',
       long_desc: '',
-      asi: '',
+      asi: this.fb.array([this.createAsi()]),
       age: '',
       alignment: '',
       size: '',
       speed: '',
-      racial_abilities: '',
+      racial_abilities: this.fb.array([
+        this.createAbility()
+      ]),
       languages: '',
       source: '',
       id: ''
     });
+  }
+
+  get racial_abilities() {
+    return this.creationForm.get('racial_abilities') as FormArray;
+  }
+
+  createAbility() {
+    return this.fb.group({
+      name: this.fb.control(''),
+      desc: this.fb.control('')
+    });
+  }
+
+  removeAbility(index: number): void {
+    this.racial_abilities.removeAt(index);
+  }
+
+  addAbility() {
+    this.racial_abilities.push(this.createAbility());
+  }
+
+  get asi_list() {
+    return this.creationForm.get('asi') as FormArray;
+  }
+
+  createAsi() {
+    return this.fb.group({
+      name: this.fb.control(''),
+      value: this.fb.control('')
+    });
+  }
+
+  removeAsi(index: number): void {
+    this.asi_list.removeAt(index);
+  }
+
+  addAsi() {
+    this.asi_list.push(this.createAsi());
   }
 
   getRaces(sources) {
@@ -85,29 +127,45 @@ export class DndRaceComponent implements OnInit {
   }
 
   saveNewRace() {
-    const vs = this.channelForm.value;
+    const vs = this.creationForm.value;
+    // Racial abilities
+    const ra = [];
+    vs.racial_abilities.forEach(function (v) {
+      if (v.name && v.desc) {
+        ra.push(v);
+      }
+    });
+    // Ability score increases
+    const asi = [];
+    vs.asi.forEach(function (v) {
+      if (v.name && v.value) {
+        asi.push(v);
+      }
+    });
+
     const r = {};
     const fields = [
       ['name', vs.name],
       ['short_desc', vs.short_desc],
       ['long_desc', vs.long_desc],
-      ['asi', vs.asi],
+      ['asi', asi],
       ['age', vs.age],
       ['alignment', vs.alignment],
       ['size', vs.size],
       ['speed', vs.speed],
-      ['racial_abilities', vs.racial_abilities],
+      ['racial_abilities', ra],
       ['languages', vs.languages],
       ['source', +vs.source],
       ['id', +vs.id]
     ];
     fields.forEach(function (value) {
-      if (value[1]) {
+      if (value[1].length > 0) {
         r[value[0]] = value[1];
       }
     });
-    this.api.createRace(r).subscribe(_ => {
-      this.error = false;
-    });
+    console.log('Result', r);
+    // this.api.createRace(r).subscribe(_ => {
+    //   this.error = false;
+    // });
   }
 }

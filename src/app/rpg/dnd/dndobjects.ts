@@ -1,4 +1,4 @@
-interface DndSource {
+export interface DndSource {
   name: string;
   short_name: string;
   enabled: boolean;
@@ -13,6 +13,11 @@ interface DndObject {
   id: number;
 }
 
+export interface DndAttribute {
+  name: string;
+  desc: string;
+}
+
 interface DndClassEnricher extends DndObject {
   prof_skills: string;
   prof_tools: string;
@@ -20,7 +25,7 @@ interface DndClassEnricher extends DndObject {
   equipment: string;
 }
 
-interface DndClass extends DndClassEnricher {
+export interface DndClass extends DndClassEnricher {
   multiclass_req: string;
   level_table: string;
   hit_dice: string;
@@ -31,12 +36,12 @@ interface DndClass extends DndClassEnricher {
   prof_saving_throws: string;
 }
 
-interface DndSubclass extends DndObject {
-  attributes: string;
+export interface DndSubclass extends DndObject {
+  attributes: [DndAttribute];
   class: number;
 }
 
-interface DndRace extends DndObject {
+export interface DndRace extends DndObject {
   asi: string;
   age: string;
   alignment: string;
@@ -46,12 +51,21 @@ interface DndRace extends DndObject {
   languages: string;
 }
 
-interface DndSubrace extends DndObject {
+export interface DndSubrace extends DndObject {
   asi: string;
-  attributes: string;
+  attributes: [DndAttribute];
   race: number;
 }
 
-interface DndBackground extends DndClassEnricher {
+export interface DndBackground extends DndClassEnricher {
   feature: string;
 }
+
+export const ASI = [
+  {id: 1, short_name: 'STR', name: 'Strength'},
+  {id: 2, short_name: 'DEX', name: 'Dexterity'},
+  {id: 3, short_name: 'CON', name: 'Constitution'},
+  {id: 4, short_name: 'INT', name: 'Intelligence'},
+  {id: 5, short_name: 'WIS', name: 'Wisdom'},
+  {id: 6, short_name: 'CHA', name: 'Charisma'}
+];

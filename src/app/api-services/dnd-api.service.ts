@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {environment} from '../../environments/environment';
+import {DndBackground, DndClass, DndRace, DndSource, DndSubclass, DndSubrace} from '../rpg/dnd/dndobjects';
 
 @Injectable({
   providedIn: 'root'
@@ -57,6 +58,11 @@ export class DndApiService {
   getSubclasses(sources: string) {
     const url = this.api_url + 'subclass?source=' + sources;
     return this.http.get<{ string: [DndSubclass] }>(url, this.getHttpOptions());
+  }
+
+  getSubclass(name_or_id: string) {
+    const url = this.api_url + 'subclass/' + name_or_id;
+    return this.http.get<DndSubclass>(url, this.getHttpOptions());
   }
 
   createSubclass(options) {

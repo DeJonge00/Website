@@ -16,7 +16,7 @@
   </div>
 
   <div class="card text-white bg-primary mb-3" style="min-width: 20rem; margin: 10px;">
-    <div class="card-header"><a routerLink="/dnd/race">Races</a></div>
+    <div class="card-header"><a routerLink="/dnd/race">Races</a> and <a routerLink="/dnd/subrace">Race variants</a></div>
     <div class="card-body">
       <fieldset class="form-group">
         <div class="form-check">
@@ -24,7 +24,7 @@
             <a routerLink="/dnd/race/{{r.id}}"><b>{{r.name}}</b></a>
             <div *ngFor="let s of subraces[r.name]">
               <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="optionsRadiosRaces" (click)="onSelectRace(r)">
+                <input type="radio" class="form-check-input" name="optionsRadiosRaces" (click)="onSelectRace(r, s)">
                 <a routerLink="/dnd/subrace/{{s.id}}">{{s.name}}</a>
               </label>
             </div>
@@ -35,7 +35,7 @@
   </div>
 
   <div class="card text-white bg-primary mb-3" style="min-width: 20rem; margin: 10px;">
-    <div class="card-header"><a routerLink="/dnd/class">Classes</a></div>
+    <div class="card-header"><a routerLink="/dnd/class">Classes</a> and <a routerLink="/dnd/subclass">Subclasses</a></div>
     <div class="card-body">
       <fieldset class="form-group">
         <div class="form-check">
@@ -61,7 +61,7 @@
         <div class="form-check">
           <div *ngFor="let b of backgrounds">
             <label class="form-check-label">
-              <input type="radio" class="form-check-input" name="optionsRadiosClasses" (click)="onSelectBackground(b)">
+              <input type="radio" class="form-check-input" name="optionsRadiosBackgrounds" (click)="onSelectBackground(b)">
               <a routerLink="/dnd/background/{{b.id}}">{{b.name}}</a>
             </label>
           </div>
@@ -69,24 +69,29 @@
       </fieldset>
     </div>
   </div>
-
+<!--</div>-->
+<!--<div class="row">-->
   <div class="card text-white bg-primary mb-3" style="min-width: 20rem; margin: 10px;"
        *ngIf="chosen_race || chosen_class || chosen_background">
     <div class="card-header">Character</div>
     <div class="card-body">
       <div *ngIf="chosen_race">
-        Race: {{chosen_race.name}}<br/>
+        <b>Race:</b> {{chosen_race.name}}<br/>
         <i>{{chosen_race.short_desc}}</i><br/><br/>
       </div>
+      <div *ngIf="chosen_subrace">
+        <b>Variant:</b> {{chosen_subrace.name}}<br />
+        <i>{{chosen_subrace.short_desc}}</i><br/><br/>
+      </div>
       <div *ngIf="chosen_subclass">
-        Class: {{chosen_class.name}}<br/>
+        <b>Class:</b> {{chosen_class.name}}<br/>
         <i>{{chosen_class.short_desc}}</i><br/><br/>
-        Subclass: {{chosen_subclass.name}}<br/>
+        <b>Subclass:</b> {{chosen_subclass.name}}<br/>
         <i>{{chosen_subclass.short_desc}}</i><br/><br/>
         <br/>
       </div>
       <div *ngIf="chosen_background">
-        Background: {{chosen_background.name}}<br/>
+        <b>Background:</b> {{chosen_background.name}}<br/>
         <i>{{chosen_background.short_desc}}</i>
       </div>
     </div>

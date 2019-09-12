@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {ActivatedRoute} from '@angular/router';
-import {DndApiService} from '../../../ApiServices/dnd-api.service';
-import {DiscordApiService} from '../../../ApiServices/discord-api.service';
+import {DndApiService} from '../../../api-services/dnd-api.service';
+import {DiscordApiService} from '../../../api-services/discord-api.service';
+import {DndSource} from '../dndobjects';
 
 @Component({
   selector: 'app-source',

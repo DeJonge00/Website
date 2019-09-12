@@ -20,168 +20,196 @@
     Login to add a new race to the website
   </div>
   <div *ngIf="discord.is_admin" class="card-body">
-    <!-- Name data -->
-    <div class="row">
-      <div class="col wlimit">
-        Name:
+    <form [formGroup]="creationForm">
+      <!-- Name data -->
+      <div class="row">
+        <div class="col wlimit">
+          Name:
+        </div>
+        <div class="col">
+          <input type="text" formControlName="name" class="form-control" placeholder="Class name">
+        </div>
       </div>
-      <div class="col">
-        <form [formGroup]="channelForm">
-          <input type="text" formControlName="name" class="form-control">
-        </form>
-      </div>
-    </div>
 
-    <!-- Short description -->
-    <div class="row">
-      <div class="col wlimit">
-        Short description:
-      </div>
-      <div class="col">
-        <form [formGroup]="channelForm">
-          <textarea type="text" formControlName="short_desc" class="form-control" rows="3"></textarea>
-        </form>
-      </div>
-    </div>
+      <!-- Short description -->
+      <div class="row">
+        <div class="col wlimit">
+          Short description:
+        </div>
+        <div class="col">
 
-    <!-- Long description -->
-    <div class="row">
-      <div class="col wlimit">
-        Long description:
+          <textarea type="text" formControlName="short_desc" class="form-control" rows="3"
+                    placeholder="Short description"></textarea>
+        </div>
       </div>
-      <div class="col">
-        <form [formGroup]="channelForm">
-          <textarea type="text" formControlName="long_desc" class="form-control" rows="8"></textarea>
-        </form>
-      </div>
-    </div>
 
-    <!-- Ability score increase -->
-    <div class="row">
-      <div class="col wlimit">
-        Ability score increase:
+      <!-- Long description -->
+      <div class="row">
+        <div class="col wlimit">
+          Long description:
+        </div>
+        <div class="col">
+          <textarea type="text" formControlName="long_desc" class="form-control" rows="8"
+                    placeholder="Long description"></textarea>
+        </div>
       </div>
-      <div class="col">
-        <form [formGroup]="channelForm">
-          <textarea type="text" formControlName="asi" class="form-control" rows="2"></textarea>
-        </form>
-      </div>
-    </div>
 
-    <!-- Age -->
-    <div class="row">
-      <div class="col wlimit">
-        Age:
+      <!-- Ability score increase -->
+      <div class="row">
+        <div class="col wlimit">
+          Ability score increases:
+        </div>
+        <div class="col">
+          <button type="button" (click)="addAsi()" class="btn btn-primary"
+                  style="width: 100%; min-width: 200px">Add ASI
+          </button>
+        </div>
+        <div class="col">
+          <button type="button" (click)="removeAsi(asi_list.length-1)" class="btn btn-primary"
+                  style="width: 100%; min-width: 200px">Remove last ASI
+          </button>
+        </div>
       </div>
-      <div class="col">
-        <form [formGroup]="channelForm">
-          <textarea type="text" formControlName="age" class="form-control" rows="2"></textarea>
-        </form>
+      <div formArrayName="asi">
+        <div *ngFor="let attr of asi_list.controls; let i = index" formArrayName="{{i}}">
+          <div class="row">
+            <div class="col wlimit">ASI {{i + 1}}</div>
+            <div class="col">
+              <select formControlName="name" class="custom-select">
+                <option [value]="asi.id" *ngFor="let asi of ASI">{{asi.name}}</option>
+              </select>
+            </div>
+            <div class="col">
+              <input formControlName="value" type="text" class="form-control" placeholder="+1">
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
 
-    <!-- Alignment -->
-    <div class="row">
-      <div class="col wlimit">
-        Alignment:
+      <!-- Age -->
+      <div class="row">
+        <div class="col wlimit">
+          Age:
+        </div>
+        <div class="col">
+          <textarea type="text" formControlName="age" class="form-control" rows="2" placeholder="Age"></textarea>
+        </div>
       </div>
-      <div class="col">
-        <form [formGroup]="channelForm">
-          <textarea type="text" formControlName="alignment" class="form-control" rows="4"></textarea>
-        </form>
-      </div>
-    </div>
 
-    <!-- Size -->
-    <div class="row">
-      <div class="col wlimit">
-        Size:
+      <!-- Alignment -->
+      <div class="row">
+        <div class="col wlimit">
+          Alignment:
+        </div>
+        <div class="col">
+          <textarea type="text" formControlName="alignment" class="form-control" rows="4" placeholder="Alignment">
+          </textarea>
+        </div>
       </div>
-      <div class="col">
-        <form [formGroup]="channelForm">
-          <textarea type="text" formControlName="size" class="form-control" rows="2"></textarea>
-        </form>
-      </div>
-    </div>
 
-    <!-- Speed -->
-    <div class="row">
-      <div class="col wlimit">
-        Speed:
+      <!-- Size -->
+      <div class="row">
+        <div class="col wlimit">
+          Size:
+        </div>
+        <div class="col">
+          <textarea type="text" formControlName="size" class="form-control" rows="2" placeholder="Size"></textarea>
+        </div>
       </div>
-      <div class="col">
-        <form [formGroup]="channelForm">
-          <input type="text" formControlName="speed" class="form-control">
-        </form>
-      </div>
-    </div>
 
-    <!-- Racial abilities -->
-    <div class="row">
-      <div class="col wlimit">
-        Racial abilities:
+      <!-- Speed -->
+      <div class="row">
+        <div class="col wlimit">
+          Speed:
+        </div>
+        <div class="col">
+          <input type="text" formControlName="speed" class="form-control" placeholder="Speed">
+        </div>
       </div>
-      <div class="col">
-        <form [formGroup]="channelForm">
-          <textarea type="text" formControlName="racial_abilities" class="form-control" rows="8"></textarea>
-        </form>
-      </div>
-    </div>
 
-    <!-- Languages -->
-    <div class="row">
-      <div class="col wlimit">
-        Languages:
+      <!-- Racial abilities -->
+      <div class="row">
+        <div class="col wlimit">
+          Racial abilities:
+        </div>
+        <div class="col">
+          <button type="button" (click)="addAbility()" class="btn btn-primary"
+                  style="width: 100%; min-width: 200px">Add subclass attribute
+          </button>
+        </div>
+        <div class="col">
+          <button type="button" (click)="removeAbility(racial_abilities.length-1)" class="btn btn-primary"
+                  style="width: 100%; min-width: 200px">Remove last subclass attribute
+          </button>
+        </div>
       </div>
-      <div class="col">
-        <form [formGroup]="channelForm">
-          <input type="text" formControlName="languages" class="form-control">
-        </form>
+      <div formArrayName="racial_abilities">
+        <div *ngFor="let ability of racial_abilities.controls; let i = index" formArrayName="{{i}}">
+          <div class="row">
+            <div class="col wlimit">Ability {{i + 1}} name:</div>
+            <div class="col">
+              <input formControlName="name" type="text" class="form-control" placeholder="Ability name">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col wlimit">Ability {{i + 1}} description:</div>
+            <div class="col">
+              <textarea formControlName="desc" type="text" class="form-control" placeholder="Ability description"
+                        rows="2"></textarea>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
 
-    <!-- Source -->
-    <div class="row">
-      <div class="col wlimit">
-        Source:
+      <!-- Languages -->
+      <div class="row">
+        <div class="col wlimit">
+          Languages:
+        </div>
+        <div class="col">
+          <input type="text" formControlName="languages" class="form-control" placeholder="Languages">
+        </div>
       </div>
-      <div class="col">
-        <form [formGroup]="channelForm">
+
+      <!-- Source -->
+      <div class="row">
+        <div class="col wlimit">
+          Source:
+        </div>
+        <div class="col">
           <select formControlName="source" class="custom-select">
             <option [value]="s.id" *ngFor="let s of sources">{{s.name}}</option>
           </select>
-        </form>
+        </div>
       </div>
-    </div>
 
-    <!-- ID overwrite -->
-    <div class="row">
-      <div class="col wlimit">
-        ID overwrite:
+      <!-- ID overwrite -->
+      <div class="row">
+        <div class="col wlimit">
+          ID overwrite:
+        </div>
+        <div class="col">
+          <input type="text" formControlName="id" class="form-control" placeholder="ID to overwrite">
+        </div>
       </div>
-      <div class="col">
-        <form [formGroup]="channelForm">
-          <input type="text" formControlName="id" class="form-control">
-        </form>
-      </div>
-    </div>
 
-    <!-- Save data button -->
-    <div class="row">
-      <button type="button" (click)="saveNewRace()" class="btn btn-primary"
-              style="width: 40%; margin: 10px 30% 0 30%;">
-        Save changes
-      </button>
-    </div>
+      <!-- Save data button -->
+      <div class="row">
+        <button type="button" (click)="saveNewRace()" class="btn btn-primary"
+                style="width: 40%; margin: 10px 30% 0 30%;">
+          Save changes
+        </button>
+      </div>
 
-    <!-- Let the user know saving succeeded -->
-    <div class="row">
-      <div *ngIf="error===false" class="col alert alert-dismissible alert-success">
-        Data successfully saved
+      <!-- Let the user know saving succeeded -->
+      <div class="row">
+        <div *ngIf="error===false" class="col alert alert-dismissible alert-success">
+          Data successfully saved
+        </div>
+        <div *ngIf="error===true" class="col alert alert-dismissible alert-warning">
+          Data saving failed
+        </div>
       </div>
-      <div *ngIf="error===true" class="col alert alert-dismissible alert-warning">
-        Data saving failed
-      </div>
-    </div>
+    </form>
   </div>
 </div>

@@ -15,14 +15,14 @@
     <div [innerHTML]="chosen_class.level_table"></div>
     <h3>Hit points:</h3>
     <b>Hit dice:</b> {{chosen_class.hit_dice}}<br/>
-    <b>Hit points at level 1:</b> {{chosen_class.hit_points_lvl_1}}<br />
-    <b>Hit points at higher level:</b> {{chosen_class.hit_points_higher_lvl}}<br /><br />
+    <b>Hit points at level 1:</b> {{chosen_class.hit_points_lvl_1}}<br/>
+    <b>Hit points at higher level:</b> {{chosen_class.hit_points_higher_lvl}}<br/><br/>
     <h3>Proficiencies:</h3>
-    <b>Armor:</b> {{chosen_class.prof_armor}}<br />
-    <b>Weapons:</b> {{chosen_class.prof_weapons}}<br />
-    <b>Tools:</b> {{chosen_class.prof_tools}}<br />
-    <b>Saving throws:</b> {{chosen_class.prof_saving_throws}}<br />
-    <b>Skills:</b> {{chosen_class.prof_skills}}<br /><br />
+    <b>Armor:</b> {{chosen_class.prof_armor}}<br/>
+    <b>Weapons:</b> {{chosen_class.prof_weapons}}<br/>
+    <b>Tools:</b> {{chosen_class.prof_tools}}<br/>
+    <b>Saving throws:</b> {{chosen_class.prof_saving_throws}}<br/>
+    <b>Skills:</b> {{chosen_class.prof_skills}}<br/><br/>
     <h3>Equipment</h3>
     <div [innerHTML]="chosen_class.equipment"></div>
     <b>Source:</b> {{chosen_class.source}}
@@ -37,206 +37,181 @@
     Login to add a new class to the website
   </div>
   <div *ngIf="discord.is_admin" class="card-body">
-    <!-- Name data -->
-    <div class="row">
-      <div class="col wlimit">
-        Name:
+    <form [formGroup]="channelForm">
+      <!-- Name data -->
+      <div class="row">
+        <div class="col wlimit">
+          Name:
+        </div>
+        <div class="col">
+          <input type="text" formControlName="name" class="form-control" placeholder="Class name">
+        </div>
       </div>
-      <div class="col">
-        <form [formGroup]="channelForm">
-          <input type="text" formControlName="name" class="form-control">
-        </form>
-      </div>
-    </div>
 
-    <!-- Short description -->
-    <div class="row">
-      <div class="col wlimit">
-        Short description:
+      <!-- Short description -->
+      <div class="row">
+        <div class="col wlimit">
+          Short description:
+        </div>
+        <div class="col">
+          <textarea type="text" formControlName="short_desc" class="form-control" rows="3"
+                    placeholder="Short description"></textarea>
+        </div>
       </div>
-      <div class="col">
-        <form [formGroup]="channelForm">
-          <textarea type="text" formControlName="short_desc" class="form-control" rows="3"></textarea>
-        </form>
-      </div>
-    </div>
 
-    <!-- Long description -->
-    <div class="row">
-      <div class="col wlimit">
-        Long description:
+      <!-- Long description -->
+      <div class="row">
+        <div class="col wlimit">
+          Long description:
+        </div>
+        <div class="col">
+          <textarea type="text" formControlName="long_desc" class="form-control" rows="8"
+                    placeholder="Long description"></textarea>
+        </div>
       </div>
-      <div class="col">
-        <form [formGroup]="channelForm">
-          <textarea type="text" formControlName="long_desc" class="form-control" rows="8"></textarea>
-        </form>
-      </div>
-    </div>
 
-    <!-- Multiclass requirements -->
-    <div class="row">
-      <div class="col wlimit">
-        Multiclass requirements:
+      <!-- Multiclass requirements -->
+      <div class="row">
+        <div class="col wlimit">
+          Multiclass requirements:
+        </div>
+        <div class="col">
+          <textarea type="text" formControlName="multiclass_req" class="form-control" rows="2"
+                    placeholder="Multiclass requirements"></textarea>
+        </div>
       </div>
-      <div class="col">
-        <form [formGroup]="channelForm">
-          <textarea type="text" formControlName="multiclass_req" class="form-control" rows="2"></textarea>
-        </form>
-      </div>
-    </div>
 
-    <!-- Level table -->
-    <div class="row">
-      <div class="col wlimit">
-        Level table:
+      <!-- Level table -->
+      <div class="row">
+        <div class="col wlimit">
+          Level table:
+        </div>
+        <div class="col">
+          <textarea type="text" formControlName="level_table" class="form-control" rows="22"
+                    placeholder="Level table"></textarea>
+        </div>
       </div>
-      <div class="col">
-        <form [formGroup]="channelForm">
-          <textarea type="text" formControlName="level_table" class="form-control" rows="22"></textarea>
-        </form>
-      </div>
-    </div>
 
-    <!-- Hit dice -->
-    <div class="row">
-      <div class="col wlimit">
-        Hit dice:
+      <!-- Hit dice -->
+      <div class="row">
+        <div class="col wlimit">
+          Hit dice:
+        </div>
+        <div class="col">
+          <input type="text" formControlName="hit_dice" class="form-control" placeholder="Hit dice">
+        </div>
       </div>
-      <div class="col">
-        <form [formGroup]="channelForm">
-          <input type="text" formControlName="hit_dice" class="form-control">
-        </form>
-      </div>
-    </div>
 
-    <!-- Hit points -->
-    <div class="row">
-      <div class="col wlimit">
-        Hit points at level 1:
+      <!-- Hit points -->
+      <div class="row">
+        <div class="col wlimit">
+          Hit points at level 1:
+        </div>
+        <div class="col">
+          <input type="text" formControlName="hit_points_lvl_1" class="form-control" placeholder="Hit points">
+        </div>
       </div>
-      <div class="col">
-        <form [formGroup]="channelForm">
-          <input type="text" formControlName="hit_points_lvl_1" class="form-control">
-        </form>
+      <div class="row">
+        <div class="col wlimit">
+          Hit points at higher levels:
+        </div>
+        <div class="col">
+          <input type="text" formControlName="hit_points_higher_lvl" class="form-control" placeholder="Hit points">
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col wlimit">
-        Hit points at higher levels:
-      </div>
-      <div class="col">
-        <form [formGroup]="channelForm">
-          <input type="text" formControlName="hit_points_higher_lvl" class="form-control">
-        </form>
-      </div>
-    </div>
 
-    <!-- Proficiencies -->
-    <div class="row">
-      <div class="col wlimit">
-        Proficiencies (Armor):
+      <!-- Proficiencies -->
+      <div class="row">
+        <div class="col wlimit">
+          Proficiencies (Armor):
+        </div>
+        <div class="col">
+          <input type="text" formControlName="prof_armor" class="form-control" placeholder="Armor">
+        </div>
       </div>
-      <div class="col">
-        <form [formGroup]="channelForm">
-          <input type="text" formControlName="prof_armor" class="form-control">
-        </form>
+      <div class="row">
+        <div class="col wlimit">
+          Proficiencies (Weapons):
+        </div>
+        <div class="col">
+          <input type="text" formControlName="prof_weapons" class="form-control" placeholder="Weapons">
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col wlimit">
-        Proficiencies (Weapons):
+      <div class="row">
+        <div class="col wlimit">
+          Proficiencies (Tools):
+        </div>
+        <div class="col">
+          <input type="text" formControlName="prof_tools" class="form-control" placeholder="Tools">
+        </div>
       </div>
-      <div class="col">
-        <form [formGroup]="channelForm">
-          <input type="text" formControlName="prof_weapons" class="form-control">
-        </form>
+      <div class="row">
+        <div class="col wlimit">
+          Proficiencies (Saving throws):
+        </div>
+        <div class="col">
+          <input type="text" formControlName="prof_saving_throws" class="form-control" placeholder="Saving throws">
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col wlimit">
-        Proficiencies (Tools):
+      <div class="row">
+        <div class="col wlimit">
+          Proficiencies (Skills):
+        </div>
+        <div class="col">
+          <input type="text" formControlName="prof_skills" class="form-control" placeholder="Skills">
+        </div>
       </div>
-      <div class="col">
-        <form [formGroup]="channelForm">
-          <input type="text" formControlName="prof_tools" class="form-control">
-        </form>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col wlimit">
-        Proficiencies (Saving throws):
-      </div>
-      <div class="col">
-        <form [formGroup]="channelForm">
-          <input type="text" formControlName="prof_saving_throws" class="form-control">
-        </form>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col wlimit">
-        Proficiencies (Skills):
-      </div>
-      <div class="col">
-        <form [formGroup]="channelForm">
-          <input type="text" formControlName="prof_skills" class="form-control">
-        </form>
-      </div>
-    </div>
 
-    <!-- Equipment -->
-    <div class="row">
-      <div class="col wlimit">
-        Equipment:
+      <!-- Equipment -->
+      <div class="row">
+        <div class="col wlimit">
+          Equipment:
+        </div>
+        <div class="col">
+          <textarea type="text" formControlName="equipment" class="form-control" rows="4"
+                    placeholder="Equipment"></textarea>
+        </div>
       </div>
-      <div class="col">
-        <form [formGroup]="channelForm">
-          <textarea type="text" formControlName="equipment" class="form-control" rows="4"></textarea>
-        </form>
-      </div>
-    </div>
 
-    <!-- Source -->
-    <div class="row">
-      <div class="col wlimit">
-        Source:
-      </div>
-      <div class="col">
-        <form [formGroup]="channelForm">
+      <!-- Source -->
+      <div class="row">
+        <div class="col wlimit">
+          Source:
+        </div>
+        <div class="col">
           <select formControlName="source" class="custom-select">
             <option [value]="s.id" *ngFor="let s of sources">{{s.name}}</option>
           </select>
-        </form>
+        </div>
       </div>
-    </div>
 
-    <!-- ID overwrite -->
-    <div class="row">
-      <div class="col wlimit">
-        ID overwrite:
+      <!-- ID overwrite -->
+      <div class="row">
+        <div class="col wlimit">
+          ID overwrite:
+        </div>
+        <div class="col">
+          <input type="text" formControlName="id" class="form-control" placeholder="ID to overwrite">
+        </div>
       </div>
-      <div class="col">
-        <form [formGroup]="channelForm">
-          <input type="text" formControlName="id" class="form-control">
-        </form>
-      </div>
-    </div>
 
-    <!-- Save data button -->
-    <div class="row">
-      <button type="button" (click)="saveNewClass()" class="btn btn-primary"
-              style="width: 40%; margin: 10px 30% 0 30%;">
-        Save changes
-      </button>
-    </div>
+      <!-- Save data button -->
+      <div class="row">
+        <button type="button" (click)="saveNewClass()" class="btn btn-primary"
+                style="width: 40%; margin: 10px 30% 0 30%;">
+          Save changes
+        </button>
+      </div>
 
-    <!-- Let the user know saving succeeded -->
-    <div class="row">
-      <div *ngIf="error===false" class="col alert alert-dismissible alert-success">
-        Data successfully saved
+      <!-- Let the user know saving succeeded -->
+      <div class="row">
+        <div *ngIf="error===false" class="col alert alert-dismissible alert-success">
+          Data successfully saved
+        </div>
+        <div *ngIf="error===true" class="col alert alert-dismissible alert-warning">
+          Data saving failed
+        </div>
       </div>
-      <div *ngIf="error===true" class="col alert alert-dismissible alert-warning">
-        Data saving failed
-      </div>
-    </div>
+    </form>
   </div>
 </div>

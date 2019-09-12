@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {DiscordApiService} from '../../ApiServices/discord-api.service';
-import {GeneralApiService} from '../../ApiServices/general-api.service';
+import {DiscordApiService} from '../../api-services/discord-api.service';
+import {GeneralApiService} from '../../api-services/general-api.service';
 import {FormBuilder, FormGroup} from '@angular/forms';
 
 @Component({

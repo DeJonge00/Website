@@ -10,7 +10,7 @@
     <h4 class="card-title">
       {{chosen_source.name}} ({{chosen_source.short_name}})
     </h4>
-    <b>Enabled by default:</b> {{chosen_source.enabled}}<br />
+    <b>Enabled by default:</b> {{chosen_source.enabled}}<br/>
     <b>ID:</b> {{chosen_source.id}}
   </div>
 </div>
@@ -23,71 +23,65 @@
     Login to add a new source to the website
   </div>
   <div *ngIf="discord.is_admin" class="card-body">
-    <!-- Name data -->
-    <div class="row">
-      <div class="col wlimit">
-        Name:
+    <form [formGroup]="channelForm">
+      <!-- Name data -->
+      <div class="row">
+        <div class="col wlimit">
+          Name:
+        </div>
+        <div class="col">
+          <input type="text" formControlName="name" class="form-control" placeholder="Source name">
+        </div>
       </div>
-      <div class="col">
-        <form [formGroup]="channelForm">
-          <input type="text" formControlName="name" class="form-control">
-        </form>
-      </div>
-    </div>
 
-    <!-- Short name -->
-    <div class="row">
-      <div class="col wlimit">
-        Abbreviation:
+      <!-- Short name -->
+      <div class="row">
+        <div class="col wlimit">
+          Abbreviation:
+        </div>
+        <div class="col">
+          <input type="text" formControlName="short_name" class="form-control" placeholder="Abbreviated name">
+        </div>
       </div>
-      <div class="col">
-        <form [formGroup]="channelForm">
-          <input type="text" formControlName="short_name" class="form-control">
-        </form>
-      </div>
-    </div>
 
-    <!-- Enabled by default -->
-    <div class="row">
-      <div class="col wlimit">
-        Enabled by default:
-      </div>
-      <div class="col">
-        <form [formGroup]="channelForm">
+      <!-- Enabled by default -->
+      <div class="row">
+        <div class="col wlimit">
+          Enabled by default:
+        </div>
+        <div class="col">
           <select formControlName="enabled" class="custom-select">
             <option [value]="s" *ngFor="let s of ['Enabled', 'Disabled']">{{s}}</option>
           </select>
-        </form>
+        </div>
       </div>
-    </div>
 
-    <!-- ID overwrite -->
-    <div class="row">
-      <div class="col wlimit">
-        ID overwrite:
+      <!-- ID overwrite -->
+      <div class="row">
+        <div class="col wlimit">
+          ID overwrite:
+        </div>
+        <div class="col">
+          <input type="text" formControlName="id" class="form-control" placeholder="ID to overwrite">
+        </div>
       </div>
-      <div class="col">
-        <form [formGroup]="channelForm">
-          <input type="text" formControlName="id" class="form-control">
-        </form>
-      </div>
-    </div>
 
-    <!-- Save data button -->
-    <div class="row">
-      <button type="button" (click)="saveNewSource()" class="btn btn-primary submit">
-        Save changes
-      </button>
-    </div>
+      <!-- Save data button -->
+      <div class="row">
+        <button type="button" (click)="saveNewSource()" class="btn btn-primary submit">
+          Save changes
+        </button>
+      </div>
 
-    <!-- Let the user know saving succeeded -->
-    <div class="row">
-      <div *ngIf="error===false" class="col alert alert-dismissible alert-success">
-        Data successfully saved
+      <!-- Let the user know saving succeeded -->
+      <div class="row">
+        <div *ngIf="error===false" class="col alert alert-dismissible alert-success">
+          Data successfully saved
+        </div>
+        <div *ngIf="error===true" class="col alert alert-dismissible alert-warning">
+          Data saving failed
+        </div>
       </div>
-      <div *ngIf="error===true" class="col alert alert-dismissible alert-warning">
-        Data saving failed
-      </div>
-    </div>
+    </form>
   </div>
 </div>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {DiscordApiService} from '../ApiServices/discord-api.service';
+import {DiscordApiService} from '../api-services/discord-api.service';
 
 @Component({
   selector: 'app-biribiri',

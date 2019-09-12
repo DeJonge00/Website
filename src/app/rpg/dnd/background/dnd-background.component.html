@@ -13,11 +13,11 @@
     {{chosen_bg.long_desc}}<br/><br/>
     <b>Languages:</b> {{chosen_bg.languages}}
     <h3>Proficiencies</h3>
-    <b>Tools:</b> {{chosen_bg.prof_tools}}<br />
-    <b>Skills:</b> {{chosen_bg.prof_skills}}<br /><br />
+    <b>Tools:</b> {{chosen_bg.prof_tools}}<br/>
+    <b>Skills:</b> {{chosen_bg.prof_skills}}<br/><br/>
     <h3>Equipment</h3>
     <div [innerHTML]="chosen_bg.equipment"></div>
-    <b>Source:</b> {{chosen_bg.source}}<br /><br />
+    <b>Source:</b> {{chosen_bg.source}}<br/><br/>
     <h3>Feature</h3>
     {{chosen_bg.feature}}
   </div>
@@ -31,142 +31,128 @@
     Login to add a new background to the website
   </div>
   <div *ngIf="discord.is_admin" class="card-body">
-    <!-- Name data -->
-    <div class="row">
-      <div class="col wlimit">
-        Name:
+    <form [formGroup]="channelForm">
+      <!-- Name data -->
+      <div class="row">
+        <div class="col wlimit">
+          Name:
+        </div>
+        <div class="col">
+          <input type="text" formControlName="name" class="form-control" placeholder="Background name">
+        </div>
       </div>
-      <div class="col">
-        <form [formGroup]="channelForm">
-          <input type="text" formControlName="name" class="form-control">
-        </form>
-      </div>
-    </div>
 
-    <!-- Short description -->
-    <div class="row">
-      <div class="col wlimit">
-        Short description:
+      <!-- Short description -->
+      <div class="row">
+        <div class="col wlimit">
+          Short description:
+        </div>
+        <div class="col">
+          <textarea type="text" formControlName="short_desc" class="form-control" rows="3"
+                    placeholder="Short description"></textarea>
+        </div>
       </div>
-      <div class="col">
-        <form [formGroup]="channelForm">
-          <textarea type="text" formControlName="short_desc" class="form-control" rows="3"></textarea>
-        </form>
-      </div>
-    </div>
 
-    <!-- Long description -->
-    <div class="row">
-      <div class="col wlimit">
-        Long description:
+      <!-- Long description -->
+      <div class="row">
+        <div class="col wlimit">
+          Long description:
+        </div>
+        <div class="col">
+          <textarea type="text" formControlName="long_desc" class="form-control" rows="8"
+                    placeholder="Long description"></textarea>
+        </div>
       </div>
-      <div class="col">
-        <form [formGroup]="channelForm">
-          <textarea type="text" formControlName="long_desc" class="form-control" rows="8"></textarea>
-        </form>
-      </div>
-    </div>
 
-    <!-- Languages -->
-    <div class="row">
-      <div class="col wlimit">
-        Languages:
+      <!-- Languages -->
+      <div class="row">
+        <div class="col wlimit">
+          Languages:
+        </div>
+        <div class="col">
+          <input type="text" formControlName="languages" class="form-control" placeholder="Languages">
+        </div>
       </div>
-      <div class="col">
-        <form [formGroup]="channelForm">
-          <input type="text" formControlName="languages" class="form-control">
-        </form>
-      </div>
-    </div>
 
-    <!-- Proficiencies -->
-    <div class="row">
-      <div class="col wlimit">
-        Proficiencies (Tools):
+      <!-- Proficiencies -->
+      <div class="row">
+        <div class="col wlimit">
+          Proficiencies (Tools):
+        </div>
+        <div class="col">
+          <input type="text" formControlName="prof_tools" class="form-control" placeholder="Tools">
+        </div>
       </div>
-      <div class="col">
-        <form [formGroup]="channelForm">
-          <input type="text" formControlName="prof_tools" class="form-control">
-        </form>
+      <div class="row">
+        <div class="col wlimit">
+          Proficiencies (Skills):
+        </div>
+        <div class="col">
+          <input type="text" formControlName="prof_skills" class="form-control" placeholder="Skills">
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col wlimit">
-        Proficiencies (Skills):
-      </div>
-      <div class="col">
-        <form [formGroup]="channelForm">
-          <input type="text" formControlName="prof_skills" class="form-control">
-        </form>
-      </div>
-    </div>
 
-    <!-- Equipment -->
-    <div class="row">
-      <div class="col wlimit">
-        Equipment:
+      <!-- Equipment -->
+      <div class="row">
+        <div class="col wlimit">
+          Equipment:
+        </div>
+        <div class="col">
+          <textarea type="text" formControlName="equipment" class="form-control" rows="4"
+                    placeholder="Equipment"></textarea>
+        </div>
       </div>
-      <div class="col">
-        <form [formGroup]="channelForm">
-          <textarea type="text" formControlName="equipment" class="form-control" rows="4"></textarea>
-        </form>
-      </div>
-    </div>
 
-    <!-- Feature -->
-    <div class="row">
-      <div class="col wlimit">
-        Feature:
+      <!-- Feature -->
+      <div class="row">
+        <div class="col wlimit">
+          Feature:
+        </div>
+        <div class="col">
+          <textarea type="text" formControlName="feature" class="form-control" rows="8"
+                    placeholder="Feature"></textarea>
+        </div>
       </div>
-      <div class="col">
-        <form [formGroup]="channelForm">
-          <textarea type="text" formControlName="feature" class="form-control" rows="8"></textarea>
-        </form>
-      </div>
-    </div>
 
-    <!-- Source -->
-    <div class="row">
-      <div class="col wlimit">
-        Source:
-      </div>
-      <div class="col">
-        <form [formGroup]="channelForm">
+      <!-- Source -->
+      <div class="row">
+        <div class="col wlimit">
+          Source:
+        </div>
+        <div class="col">
           <select formControlName="source" class="custom-select">
             <option [value]="s.id" *ngFor="let s of sources">{{s.name}}</option>
           </select>
-        </form>
+        </div>
       </div>
-    </div>
 
-    <!-- ID overwrite -->
-    <div class="row">
-      <div class="col wlimit">
-        ID overwrite:
+      <!-- ID overwrite -->
+      <div class="row">
+        <div class="col wlimit">
+          ID overwrite:
+        </div>
+        <div class="col">
+          <input type="text" formControlName="id" class="form-control" placeholder="ID to overwrite">
+        </div>
       </div>
-      <div class="col">
-        <form [formGroup]="channelForm">
-          <input type="text" formControlName="id" class="form-control">
-        </form>
-      </div>
-    </div>
 
-    <!-- Save data button -->
-    <div class="row">
-      <button type="button" (click)="saveNewBackground()" class="btn btn-primary"
-              style="width: 40%; margin: 10px 30% 0 30%;">
-        Save changes
-      </button>
-    </div>
+      <!-- Save data button -->
+      <div class="row">
+        <button type="button" (click)="saveNewBackground()" class="btn btn-primary"
+                style="width: 40%; margin: 10px 30% 0 30%;">
+          Save changes
+        </button>
+      </div>
 
-    <!-- Let the user know saving succeeded -->
-    <div class="row">
-      <div *ngIf="error===false" class="col alert alert-dismissible alert-success">
-        Data successfully saved
+      <!-- Let the user know saving succeeded -->
+      <div class="row">
+        <div *ngIf="error===false" class="col alert alert-dismissible alert-success">
+          Data successfully saved
+        </div>
+        <div *ngIf="error===true" class="col alert alert-dismissible alert-warning">
+          Data saving failed
+        </div>
       </div>
-      <div *ngIf="error===true" class="col alert alert-dismissible alert-warning">
-        Data saving failed
-      </div>
-    </div>
+    </form>
   </div>
 </div>
