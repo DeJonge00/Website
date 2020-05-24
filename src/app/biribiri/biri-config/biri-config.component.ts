@@ -23,6 +23,15 @@ export class BiriConfigComponent implements OnInit {
 
   ngOnInit() {
     this.getServers(true);
+    this.channelForm = this.fb.group({
+      welcomeChannel: '',
+      welcomeText: '',
+      goodbyeChannel: '',
+      goodbyeText: '',
+      starChannel: '',
+      prefix: '',
+      delete_commands: ''
+    });
   }
 
   getServers(resolve: boolean) {
